@@ -2,7 +2,9 @@ DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Permissions;
 DROP TABLE IF EXISTS Meetings;
 DROP TABLE IF EXISTS Courses;
-DROP TABLE IF
+DROP TABLE IF EXISTS CourseInstances;
+DROP TABLE IF EXISTS Registration;
+DROP TABLE IF EXISTS Departments;
 
 CREATE TABLE Users (
   Id int(8) PRIMARY KEY AUTO_INCREMENT,
@@ -35,17 +37,30 @@ CREATE TABLE Meetings (
 ) engine=InnoDB;
 
 CREATE TABLE Courses (
-
+  Id int(8) PRIMARY KEY AUTO_INCREMENT,
+  DeptId int(8) NOT NULL,
+  CourseNumber int(5) NOT NULL,
+  Description text,
+  CreditValue int(3) NOT NULL,
 ) engine=InnoDB;
 
 CREATE TABLE CourseInstances (
-) engine=InnoDB;
-
-CREATE TABLE GradeInfo (
+  InstanceId int(8) PRIMARY KEY AUTO_INCREMENT,
+  CourseId int(8) NOT NULL,
+  ProfessorId int(8),
+  NumberSeats int(8) NOT NULL,
+  SectionNumber char(3) NOT NULL,
+  Semester char(5) NOT NULL,
 ) engine=InnoDB;
 
 CREATE TABLE Registration (
+  UserId int(8) NOT NULL,
+  CourseInstanceId int(8) NOT NULL,
+  GradeGPA decimal(1, 1) DEFAULT 0.0 NOT NULL
 ) engine=InnoDB;
 
 CREATE TABLE Departments (
+  Id int(8) PRIMARY KEY AUTO_INCREMENT,
+  Abbreviation varchar(4) NOT NULL,
+  FullName varchar(30) NOT NULL
 ) engine=InnoDB;
