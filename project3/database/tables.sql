@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Role;
+DROP TABLE IF EXISTS Roles;
 DROP TABLE IF EXISTS Permissions;
 DROP TABLE IF EXISTS Meetings;
 DROP TABLE IF EXISTS Courses;
@@ -16,7 +16,7 @@ CREATE TABLE Users (
   FOREIGN KEY (DeptId) REFERENCES Departments(Id)
 ) engine=InnoDB;
 
-CREATE TABLE Role (
+CREATE TABLE Roles (
   UserId int(8) NOT NULL,
   Role ENUM('student', 'faculty', 'staff', 'executive')
 ) engine=InnoDB;
