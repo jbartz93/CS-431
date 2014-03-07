@@ -1,4 +1,4 @@
 <?php
   // just a test page for the sec
-  phpinfo();
+  echo "Hello this is a test";
 ?>
