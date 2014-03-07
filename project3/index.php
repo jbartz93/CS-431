@@ -1,4 +1,4 @@
 <?php
   // just a test page for the sec
-  echo "Hello this is a test";
+  echo "This is where we put UI";
 ?>
