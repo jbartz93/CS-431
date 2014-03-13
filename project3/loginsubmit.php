@@ -15,10 +15,9 @@ $userPassword = $_POST['password'];
 
 include('../account.php');
 
-print $userEmail;
-print $userPassword;
-
 $mysql = mysqli_connect($hostname, $username, $password, $database);
+
+print $mysql;
 
 if (mysqli_connect_errno()) {
   print "Error: " . mysqli_connect_error($mysql);
@@ -27,7 +26,7 @@ if (mysqli_connect_errno()) {
 
 print("hola");
 
-$userStatement = mysqli_prepare($mysqli, "SELECT Id, Name FROM Users WHERE Email=$email AND Password=SHA1($password) LIMIT 1");
+$userStatement = mysqli_prepare($mysqli, "SELECT Id, Name FROM Users WHERE Email=$userEmail AND Password=SHA1($userPassword) LIMIT 1");
 
 mysqli_stmt_execute($userStatement) or die ("Error: " . mysqli_error($mysql));
 
