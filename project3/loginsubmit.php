@@ -24,8 +24,8 @@ $mysql = mysql_connect($hostname, $username, $password, $database);
 
 print $mysql;
 
-if (mysql_connect_errno()) {
-  print "Error: " . mysql_connect_error($mysql);
+if (mysql_error()) {
+  print "Error: " . mysql_error($mysql);
   exit();
 }
 
