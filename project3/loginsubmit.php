@@ -21,12 +21,21 @@ if (mysqli_connect_errno($mysql)) {
   exit();
 }
 
+print("hola");
+
 $userStatement = mysqli_prepare($mysqli, "SELECT Id, Name FROM Users WHERE Email=$email AND Password=SHA1($password) LIMIT 1");
 
 mysqli_stmt_execute($userStatement) or die ("Error: " . mysqli_error($mysql));
 
+print "what's up";
+
 mysqli_stmt_bind_result($userStatement, $userId, $userName);
+
+print "helloooooooooo";
+
 mysqli_stmt_store_result($userStatement);
+
+print "this is up";
 
 if(mysqli_stmt_num_rows($userStatement) == 0) {
   print "User does not exist";
@@ -36,6 +45,7 @@ else {
   $_SESSION["Id"] = $userId;
 }
 
+print "me";
 print "Welcome $userName";
 ?>
 
