@@ -39,6 +39,7 @@ CREATE TABLE Permissions (
 
 CREATE TABLE Courses (
   Id int(8) PRIMARY KEY AUTO_INCREMENT,
+  Title varchar(50) NOT NULL,
   DeptId int(8) NOT NULL,
   CourseNumber int(5) NOT NULL,
   Description text,
