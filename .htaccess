@@ -1,6 +1,0 @@
-<IfModule mod_rewrite.c>
-  Options All -Indexes
-
-  RewriteEngine on
-  RewriteRule ^/$ project3/main.php
-</IfModule>
