@@ -10,8 +10,8 @@ session_start();
 
 print "hellooo";
 
-$email = $_GET['email'];
-$password = $_GET['password'];
+$email = $_POST['email'];
+$password = $_POST['password'];
 
 include 'account.php';
 
@@ -21,7 +21,7 @@ if (mysqli_connect_errno($mysql)) {
   exit();
 }
 
-$userStatement = mysqli_prepare($mysqli, "SELECT Id, Name FROM Users WHERE Email=$email AND Password=SHA1($password) LIMIT 1";
+$userStatement = mysqli_prepare($mysqli, "SELECT Id, Name FROM Users WHERE Email=$email AND Password=SHA1($password) LIMIT 1");
 
 mysqli_stmt_execute($userStatement) or die ("Error: " . mysqli_error($mysql));
 
