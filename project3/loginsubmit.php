@@ -2,6 +2,8 @@
 
 session_start();
 
+print "hellooo";
+
 $email = $_GET['email'];
 $password = $_GET['password'];
 
