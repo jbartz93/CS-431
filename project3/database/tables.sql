@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS Roles;
-DROP TABLE IF EXISTS Permissions;
-DROP TABLE IF EXISTS Meetings;
-DROP TABLE IF EXISTS Courses;
-DROP TABLE IF EXISTS CourseInstances;
 DROP TABLE IF EXISTS Registration;
+DROP TABLE IF EXISTS Meetings;
+DROP TABLE IF EXISTS CourseInstances;
+DROP TABLE IF EXISTS Courses;
+DROP TABLE IF EXISTS Permissions;
+DROP TABLE IF EXISTS Roles;
+DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS Departments;
 
 CREATE TABLE Departments (
@@ -42,7 +42,7 @@ CREATE TABLE Courses (
   DeptId int(8) NOT NULL,
   CourseNumber int(5) NOT NULL,
   Description text,
-  CreditValue int(3) NOT NULL,
+  CreditValue int(3) NOT NULL
 ) engine=InnoDB;
 
 CREATE TABLE CourseInstances (
@@ -59,8 +59,8 @@ CREATE TABLE CourseInstances (
 CREATE TABLE Meetings (
   Id int(8) PRIMARY KEY AUTO_INCREMENT,
   CourseInstanceId int(8) NOT NULL,
-  BeginTime TIMESTAMP CURRENT_TIMESTAMP NOT NULL,
-  EndTime TIMESTAMP CURRENT_TIMESTAMP NOT NULL,
+  BeginTime TIMESTAMP NOT NULL,
+  EndTime TIMESTAMP NOT NULL,
   Location varchar(20),
   FOREIGN KEY (CourseInstanceId) REFERENCES CourseInstances(Id)
 ) engine=InnoDB;
