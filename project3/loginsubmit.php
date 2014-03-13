@@ -18,7 +18,7 @@ include('../account.php');
 print $hostname . " " . $username . " " . $password . " " . $database;
 
 $mysql = mysqli_connect($hostname, $username, $password, $database);
-if (mysqli_connect_errno($mysql)) {
+if (mysqli_connect_errno()) {
   print "Error: " . mysqli_connect_error($mysql);
   exit();
 }
