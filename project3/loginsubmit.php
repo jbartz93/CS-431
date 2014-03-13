@@ -1,3 +1,9 @@
+<html>
+<head>
+</head>
+<body>
+<h2>hello</h2>
+
 <?php
 
 session_start();
@@ -32,3 +38,6 @@ else {
 
 print "Welcome $userName";
 ?>
+
+</body>
+</html>
