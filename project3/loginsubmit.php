@@ -10,14 +10,16 @@ session_start();
 
 print "hellooo";
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$userEmail = $_POST['email'];
+$userPassword = $_POST['password'];
 
 include('../account.php');
 
-print $hostname . " " . $username . " " . $password . " " . $database;
+print $userEmail;
+print $userPassword;
 
 $mysql = mysqli_connect($hostname, $username, $password, $database);
+
 if (mysqli_connect_errno()) {
   print "Error: " . mysqli_connect_error($mysql);
   exit();
