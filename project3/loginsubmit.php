@@ -13,7 +13,7 @@ print "hellooo";
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-include 'account.php';
+include('../account.php');
 
 $mysql = mysqli_connect($hostname, $username, $password, $database);
 if (mysqli_connect_errno($mysql)) {
