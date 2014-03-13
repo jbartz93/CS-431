@@ -22,7 +22,7 @@
 			mysqli_stmt_execute($permissions) or die ("Error: " . mysqli_error($mysqli));
 			//Bind the result to some variables
 			mysqli_stmt_bind_result($permissions, $grades, $allgrades, $addcourses);
-			//Not really sure why this has to be done, but it does
+			// adds result to local buffer so can be used faster later
 			mysqli_stmt_store_result($permissions);
 			if(mysqli_stmt_num_rows($permissions) == 0)
 			{
