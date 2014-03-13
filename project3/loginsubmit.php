@@ -20,32 +20,32 @@ $userPassword = $_POST['password'];
 
 include('../account.php');
 
-$mysql = mysqli_connect($hostname, $username, $password, $database);
+$mysql = mysql_connect($hostname, $username, $password, $database);
 
 print $mysql;
 
-if (mysqli_connect_errno()) {
-  print "Error: " . mysqli_connect_error($mysql);
+if (mysql_connect_errno()) {
+  print "Error: " . mysql_connect_error($mysql);
   exit();
 }
 
 print("hola");
 
-$userStatement = mysqli_prepare($mysqli, "SELECT Id, Name FROM Users WHERE Email=$userEmail AND Password=SHA1($userPassword) LIMIT 1");
+$userStatement = mysql_prepare($mysql, "SELECT Id, Name FROM Users WHERE Email=$userEmail AND Password=SHA1($userPassword) LIMIT 1");
 
-mysqli_stmt_execute($userStatement) or die ("Error: " . mysqli_error($mysql));
+mysql_stmt_execute($userStatement) or die ("Error: " . mysql_error($mysql));
 
 print "what's up";
 
-mysqli_stmt_bind_result($userStatement, $userId, $userName);
+mysql_stmt_bind_result($userStatement, $userId, $userName);
 
 print "helloooooooooo";
 
-mysqli_stmt_store_result($userStatement);
+mysql_stmt_store_result($userStatement);
 
 print "this is up";
 
-if(mysqli_stmt_num_rows($userStatement) == 0) {
+if(mysql_stmt_num_rows($userStatement) == 0) {
   print "User does not exist";
   exit();
 }
