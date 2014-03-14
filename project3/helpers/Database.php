@@ -34,7 +34,7 @@ class Database {
       $this->result[] = $row;
     }
 
-    vardump($this->result);
+    print_r($this->result);
 
     if (!$this->result) {
       $this->error = mysql_error();
