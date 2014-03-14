@@ -15,11 +15,11 @@ class Database {
   public function __construct() {
     $this->connection = mysql_connect($this->hostname, $this->username, $this->password);
 
-    if (!$mysql) {
+    if (!$this->connection) {
       $this->error = mysql_error();
     }
 
-    $this->db = mysql_select_db($this->database, $mysql);
+    $this->db = mysql_select_db($this->database, $this->connection);
 
     if (!$this->db) {
       $this->error = mysql_error();
