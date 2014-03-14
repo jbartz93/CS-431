@@ -4,29 +4,9 @@ include('helpers/header.php');
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];
 
-require_once 'helpers/Database.php';
-
-$db = new Database();
-
-// include('../account.php');
-
-// $mysql = mysql_connect($hostname, $username, $password);
-
-// if (!$mysql) {
-//   die('Not connected: ' . mysql_error());
-// }
-
-// $db = mysql_select_db($database, $mysql);
-
-// if (!$db) {
-//   die("Can't use database: " . mysql_error());
-// }
-
 $query = sprintf("SELECT Id, Name FROM Users WHERE Email='%s' AND Password=SHA1('%s') LIMIT 1", mysql_real_escape_string($userEmail), mysql_real_escape_string($userPassword));
 
 $db->makeQuery($query);
-
-// $result = mysql_query($query);
 
 if (!$db->result) {
   die("Invalid Query: " . $db->result);

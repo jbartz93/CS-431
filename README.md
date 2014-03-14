@@ -1,6 +1,6 @@
 ##Live Site Info
 
-Everything pushed to this repo is automagically deployed on our Heroku instance. It should be live within 30 seconds of pushing to github.
+Everything pushed to this repo is automagically deployed on our Heroku instance. It should be live within 30 seconds of pushing to Github.
 
 You can find the live site at: http://cs431jjs.herokuapp.com/
 
