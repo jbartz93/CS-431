@@ -12,18 +12,18 @@ if (!$db->result) {
   die("Invalid Query: " . $db->result);
 }
 
-$numRows = mysql_num_rows($db->result);
-
-if($numRows == 1) {
-  while ($row = mysql_fetch_assoc($db->result)) {
+// $numRows = mysql_num_rows($db->result);
+//
+// if($numRows == 1) {
+  foreach ($db->result as &$row) {
     $userId = $row['Id'];
     $userName = $row['Name'];
     $_SESSION["Id"] = $userId;
   }
-}
-else {
-  die("User does not exist");
-}
+// }
+// else {
+//   die("User does not exist");
+// }
 
 print "Welcome $userName";
 
