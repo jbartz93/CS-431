@@ -6,12 +6,10 @@
 
 <?php
 
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-
 session_start();
 
-print "hellooo";
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];
@@ -30,8 +28,6 @@ if (!$db) {
   die("Can't use database: " . mysql_error());
 }
 
-print("hola");
-
 $query = sprintf("SELECT Id, Name FROM Users WHERE Email='%s' AND Password=SHA1('%s') LIMIT 1", mysql_real_escape_string($userEmail), mysql_real_escape_string($userPassword));
 
 $result = mysql_query($query);
@@ -39,8 +35,6 @@ $result = mysql_query($query);
 if (!$result) {
   die("Invalid Query: " . mysql_error());
 }
-
-print("helloojisjdofjdiso");
 
 $numRows = mysql_num_rows($result);
 
@@ -55,7 +49,6 @@ else {
   die("User does not exist");
 }
 
-print "me";
 print "Welcome $userName";
 
 mysql_free_result($result);
