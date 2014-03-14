@@ -30,7 +30,7 @@ class Database {
   public function makeQuery($query) {
     $mysqlResult = mysql_query($query, $this->connection);
 
-    while($row = mysql_affected_rows($mysqlResult)) {
+    while($row = mysql_fetch_assoc($mysqlResult)) {
       $this->result[] = $row;
     }
 
