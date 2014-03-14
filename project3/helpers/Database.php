@@ -2,16 +2,17 @@
 
 class Database {
   private $connection = null;
-
   private $db = null;
+  private $hostname = "us-cdbr-east-05.cleardb.net";
+  private $username = "bc05f276159d04";
+  private $password = "cab4ffa7";
+  private $database  = "heroku_ad3d13b38fcc39e";
 
   public $result = null;
 
   public $error = null;
 
   public function __construct() {
-    include('../../account.php');
-
     $this->connection = mysql_connect($hostname, $username, $password);
 
     if (!$mysql) {

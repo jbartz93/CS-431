@@ -4,7 +4,7 @@ include('helpers/header.php');
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];
 
-include('helpers/Database.php');
+require_once 'helpers/Database.php';
 
 $db = new Database();
 
