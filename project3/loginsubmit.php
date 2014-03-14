@@ -6,8 +6,6 @@
 
 <?php
 
-phpinfo();
-
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
@@ -20,36 +18,47 @@ $userPassword = $_POST['password'];
 
 include('../account.php');
 
-$mysql = mysql_connect($hostname, $username, $password, $database) or die(mysql_error());
+$mysql = mysql_connect($hostname, $username, $password);
 
-print $mysql;
+if (!$mysql) {
+  die('Not connected: ' . mysql_error());
+}
+
+$db = mysql_select_db($database, $mysql);
+
+if (!$db) {
+  die("Can't use database: " . mysql_error());
+}
 
 print("hola");
 
-$userStatement = mysqli_query($mysql, "SELECT Id, Name FROM Users WHERE Email=$userEmail AND Password=SHA1($userPassword) LIMIT 1");
+$query = sprintf("SELECT Id, Name FROM Users WHERE Email='%s' AND Password=SHA1('%s') LIMIT 1", mysql_real_escape_string($userEmail), mysql_real_escape_string($userPassword));
 
-mysql_stmt_execute($userStatement) or die ("Error: " . mysql_error($mysql));
+$result = mysql_query($query);
 
-print "what's up";
+if (!$result) {
+  die("Invalid Query: " . mysql_error());
+}
 
-mysql_stmt_bind_result($userStatement, $userId, $userName);
+print("helloojisjdofjdiso");
 
-print "helloooooooooo";
+$numRows = mysql_num_rows($result);
 
-mysql_stmt_store_result($userStatement);
-
-print "this is up";
-
-if(mysql_stmt_num_rows($userStatement) == 0) {
-  print "User does not exist";
-  exit();
+if($numRows == 1) {
+  while ($row = mysql_fetch_assoc($result)) {
+    $userId = $row['Id'];
+    $userName = $row['Name'];
+    $_SESSION["Id"] = $userId;
+  }
 }
 else {
-  $_SESSION["Id"] = $userId;
+  die("User does not exist");
 }
 
 print "me";
 print "Welcome $userName";
+
+mysql_free_result($result);
 ?>
 
 </body>
