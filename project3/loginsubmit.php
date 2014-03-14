@@ -1,36 +1,39 @@
 <?php
-
 include('helpers/header.php');
 
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];
 
-include('../account.php');
+$db = new Database();
 
-$mysql = mysql_connect($hostname, $username, $password);
+// include('../account.php');
 
-if (!$mysql) {
-  die('Not connected: ' . mysql_error());
-}
+// $mysql = mysql_connect($hostname, $username, $password);
 
-$db = mysql_select_db($database, $mysql);
+// if (!$mysql) {
+//   die('Not connected: ' . mysql_error());
+// }
 
-if (!$db) {
-  die("Can't use database: " . mysql_error());
-}
+// $db = mysql_select_db($database, $mysql);
+
+// if (!$db) {
+//   die("Can't use database: " . mysql_error());
+// }
 
 $query = sprintf("SELECT Id, Name FROM Users WHERE Email='%s' AND Password=SHA1('%s') LIMIT 1", mysql_real_escape_string($userEmail), mysql_real_escape_string($userPassword));
 
-$result = mysql_query($query);
+$db->makeQuery($query);
 
-if (!$result) {
-  die("Invalid Query: " . mysql_error());
+// $result = mysql_query($query);
+
+if (!$db->result) {
+  die("Invalid Query: " . $db->result);
 }
 
-$numRows = mysql_num_rows($result);
+$numRows = mysql_num_rows($db->result);
 
 if($numRows == 1) {
-  while ($row = mysql_fetch_assoc($result)) {
+  while ($row = mysql_fetch_assoc($db->result)) {
     $userId = $row['Id'];
     $userName = $row['Name'];
     $_SESSION["Id"] = $userId;
@@ -42,8 +45,7 @@ else {
 
 print "Welcome $userName";
 
-mysql_free_result($result);
-?>
+mysql_free_result($db->result);
 
-</body>
-</html>
+include("helpers/footer.php");
+?>
