@@ -3,12 +3,13 @@
 class Database {
   private $connection = null;
   private $db = null;
+
   private $hostname = "us-cdbr-east-05.cleardb.net";
   private $username = "bc05f276159d04";
   private $password = "cab4ffa7";
   private $database  = "heroku_ad3d13b38fcc39e";
 
-  public $result = null;
+  public $result = array();
 
   public $error = null;
 
@@ -27,7 +28,13 @@ class Database {
   }
 
   public function makeQuery($query) {
-    $this->result = mysql_query($query, $this->connection);
+    $mysqlResult = mysql_query($query, $this->connection);
+
+    while($row = mysql_affected_rows($mysqlResult)) {
+      $this->result[] = $row;
+    }
+
+    vardump($this->result);
 
     if (!$this->result) {
       $this->error = mysql_error();
