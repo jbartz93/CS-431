@@ -1,15 +1,6 @@
-<html>
-<head>
-</head>
-<body>
-<h2>hello</h2>
-
 <?php
 
-session_start();
-
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
+include('helpers/header.php');
 
 $userEmail = $_POST['email'];
 $userPassword = $_POST['password'];
