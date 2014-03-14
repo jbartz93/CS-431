@@ -13,13 +13,13 @@ class Database {
   public $error = null;
 
   public function __construct() {
-    $this->connection = mysql_connect($hostname, $username, $password);
+    $this->connection = mysql_connect($this->hostname, $this->username, $this->password);
 
     if (!$mysql) {
       $this->error = mysql_error();
     }
 
-    $this->db = mysql_select_db($database, $mysql);
+    $this->db = mysql_select_db($this->database, $mysql);
 
     if (!$this->db) {
       $this->error = mysql_error();
