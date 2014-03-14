@@ -20,18 +20,13 @@ $userPassword = $_POST['password'];
 
 include('../account.php');
 
-$mysql = mysql_connect($hostname, $username, $password, $database);
+$mysql = mysql_connect($hostname, $username, $password, $database) or die(mysql_error());
 
 print $mysql;
 
-if (mysql_error()) {
-  print "Error: " . mysql_error($mysql);
-  exit();
-}
-
 print("hola");
 
-$userStatement = mysql_prepare($mysql, "SELECT Id, Name FROM Users WHERE Email=$userEmail AND Password=SHA1($userPassword) LIMIT 1");
+$userStatement = mysqli_query($mysql, "SELECT Id, Name FROM Users WHERE Email=$userEmail AND Password=SHA1($userPassword) LIMIT 1");
 
 mysql_stmt_execute($userStatement) or die ("Error: " . mysql_error($mysql));
 
