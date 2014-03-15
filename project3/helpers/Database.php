@@ -34,15 +34,17 @@ class Database {
     $query = $this->splitQuery($query, $args);
 
     $mysqlResult = mysql_query($query, $this->connection);
+
+    if (!$mysqlResult) {
+      $this->error = mysql_error();
+    }
+    
     $this->numRows = mysql_num_rows($mysqlResult);
 
     while($row = mysql_fetch_assoc($mysqlResult)) {
       $this->result[] = $row;
     }
 
-    if (!$this->result) {
-      $this->error = mysql_error();
-    }
   }
 
   public function splitQuery($query, $queryArgs) {
