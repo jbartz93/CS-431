@@ -35,7 +35,7 @@ class Database {
 
     $mysqlResult = mysql_query($query, $this->connection);
 
-    while($row = mysql_fetch_assoc($mysqlResult)) {
+    while($row = mysql_affected_rows($mysqlResult)) {
       $this->result[] = $row;
     }
 
