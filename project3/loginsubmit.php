@@ -8,6 +8,8 @@ $userPassword = $_POST['password'];
 
 $query = "SELECT Id, Name FROM Users WHERE Email=? AND Password=SHA1(?) LIMIT 1"
 
+echo 'hello';
+
 $db->makeQuery($query, $userEmail, $userPassword);
 
 if (!$db->result) {
