@@ -32,9 +32,7 @@ class Database {
     $args = func_get_args();
     $query = array_shift($args);
 
-    $query = $this->splitQuery($query, $args);
-
-    print_r($query);
+    $query = $this->formatQuery($query, $args);
 
     $mysqlResult = mysql_query($query, $this->connection);
 
@@ -50,7 +48,7 @@ class Database {
 
   }
 
-  public function splitQuery($query, $queryArgs) {
+  public function formatQuery($query, $queryArgs) {
     $pieces = explode("?", $query);
     $newQuery = "";
 
