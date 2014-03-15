@@ -32,5 +32,7 @@ echo 'hello';
 
 print "Welcome $userName";
 
+// mysql_free_result($db->result);
+
 include("helpers/footer.php");
 ?>

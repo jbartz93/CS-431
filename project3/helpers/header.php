@@ -1,6 +1,8 @@
 <?php
   session_start();
 
+  echo "heool jsidofjsiojfiosdjf";
+
   ini_set('display_errors', 'On');
   error_reporting(E_ALL);
 
