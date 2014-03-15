@@ -6,6 +6,8 @@ $userPassword = $_POST['password'];
 
 // $query = sprintf("SELECT Id, Name FROM Users WHERE Email='%s' AND Password=SHA1('%s') LIMIT 1", mysql_real_escape_string($userEmail), mysql_real_escape_string($userPassword));
 
+print "hello to you"
+
 $query = "SELECT Id, Name FROM Users WHERE Email=? AND Password=SHA1(?) LIMIT 1"
 
 echo 'hello';

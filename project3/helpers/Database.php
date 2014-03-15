@@ -29,6 +29,7 @@ class Database {
 
   public function makeQuery() {
     $curQueryArgs = func_get_args();
+    print_r($curQueryArgs);
     $query = array_shift($curQueryArgs);
 
     $newQuery = $this->formatQuery($query, $curQueryArgs);
