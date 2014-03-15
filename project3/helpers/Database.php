@@ -43,7 +43,16 @@ class Database {
 
   public function splitQuery($query, $queryArgs) {
     $pieces = explode("?", $query);
-    return $pieces;
+    $newQuery = "";
+
+    for($i = 0; $i < $pieces.length(); $i++) {
+      $newQuery .= $pieces[$i];
+      if ($i < $queryArgs.length()) {
+        $newQuery .= $queryArgs[i];
+      }
+    }
+
+    return $newQuery;
   }
 }
 
