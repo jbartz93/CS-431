@@ -12,19 +12,17 @@ class Database {
   public $result = array();
   public $numRows = 0;
 
-  public $error = null;
-
   public function __construct() {
     $this->connection = mysql_connect($this->hostname, $this->username, $this->password);
 
     if (!$this->connection) {
-      $this->error = mysql_error();
+      throw new Exception("Invalid database connection:" . mysql_error());
     }
 
     $this->db = mysql_select_db($this->database, $this->connection);
 
     if (!$this->db) {
-      $this->error = mysql_error();
+      throw new Exception("Invalid database connection:" . mysql_error());
     }
   }
 
@@ -37,7 +35,7 @@ class Database {
     $mysqlResult = mysql_query($query, $this->connection);
 
     if (!$mysqlResult) {
-      $this->error = mysql_error();
+      throw new Exception("Invalid Query:" . mysql_error());
     }
 
     $this->numRows = mysql_num_rows($mysqlResult);
