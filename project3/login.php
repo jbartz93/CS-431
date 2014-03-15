@@ -3,7 +3,22 @@
   include('helpers/header.php');
 
   if ($userId) {
-    echo "Welcome $userId";
+    $query = "SELECT Name FROM Users WHERE Id=? LIMIT 1";
+
+    try {
+      $db->makeQuery($query, $userId);
+    }
+    catch (Exception $e) {
+      die("Error: " . $e);
+    }
+
+    $numRows = $db->numRows;
+
+    if($numRows == 1) {
+      echo "Welcome $db->result[0]['Id']";
+    }
+
+    echo "Um that didn't work";
   }
   else {
 ?>
