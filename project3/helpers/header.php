@@ -11,9 +11,6 @@
     $userId = null;
   }
 
-  echo $_SESSION["Id"];
-  echo "hello johnny";
-
   require_once 'helpers/Database.php';
 
   try {
