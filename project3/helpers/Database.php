@@ -33,12 +33,14 @@ class Database {
     $query = array_shift($args);
     $query = $this->splitQuery($query, $args);
 
+    echo $query;
+
     $mysqlResult = mysql_query($query, $this->connection);
 
     if (!$mysqlResult) {
       $this->error = mysql_error();
     }
-    
+
     $this->numRows = mysql_num_rows($mysqlResult);
 
     while($row = mysql_fetch_assoc($mysqlResult)) {
