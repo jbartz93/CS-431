@@ -1,6 +1,6 @@
 <?php
   $pageTitle = "Login";
-  include('helpers/footer.php');
+  include('helpers/header.php');
 
   if ($userId) {
     echo "Welcome $userId";
