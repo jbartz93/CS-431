@@ -32,12 +32,7 @@ class Database {
     $args = func_get_args();
     $query = array_shift($args);
 
-    print_r($args);
-    echo $query;
-
     $query = $this->splitQuery($query, $args);
-
-    echo $query;
 
     $mysqlResult = mysql_query($query, $this->connection);
 
