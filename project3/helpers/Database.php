@@ -57,12 +57,22 @@ class Database {
     for($i = 0; $i < count($pieces); $i++) {
       $newQuery .= $pieces[$i];
       if ($i < count($queryArgs)) {
-        $newQuery .= "'%s'";
+        if (is_float($queryArgs[$i])) {
+          $newQuery .= "'%1\$.1f'";
+        }
+        else if (is_int($queryArgs[$i])) {
+          $newQuery .= "'%1\$u'";
+        }
+        else {
+          $newQuery .= "'%s'";
+        }
       }
     }
 
     foreach($queryArgs as &$arg) {
-      $arg = mysql_real_escape_string($arg);
+      if (is_string($arg)) {
+        $arg = mysql_real_escape_string($arg);
+      }
     }
 
     $newQuery = vsprintf($newQuery, $queryArgs);
