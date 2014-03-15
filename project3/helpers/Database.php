@@ -45,7 +45,7 @@ class Database {
     $pieces = explode("?", $query);
     $newQuery = "";
 
-    for($i = 0; $i < $pieces.length(); $i++) {
+    for($i = 0; $i < count($pieces); $i++) {
       $newQuery .= $pieces[$i];
       if ($i < $queryArgs.length()) {
         $newQuery .= $queryArgs[i];
