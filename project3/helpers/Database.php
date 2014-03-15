@@ -29,11 +29,9 @@ class Database {
 
   public function makeQuery() {
     $curQueryArgs = func_get_args();
-    print_r($curQueryArgs);
     $query = array_shift($curQueryArgs);
 
     $newQuery = $this->formatQuery($query, $curQueryArgs);
-    echo $newQuery;
 
     $mysqlResult = mysql_query($query, $this->connection);
 
@@ -51,9 +49,6 @@ class Database {
   public function formatQuery($query, $queryArgs) {
     $pieces = split("?", $query);
     $newQuery = "";
-
-    print_r($pieces);
-    print_r($queryArgs);
 
     for($i = 0; $i < $pieces.length(), $i++)
       $newQuery .= $newQuery[$i];

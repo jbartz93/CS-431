@@ -8,26 +8,27 @@ $userPassword = $_POST['password'];
 
 print "hello to you"
 
-$query = "SELECT Id, Name FROM Users WHERE Email=? AND Password=SHA1(?) LIMIT 1"
+// $query = "SELECT Id, Name FROM Users WHERE Email=? AND Password=SHA1(?) LIMIT 1"
 
 echo 'hello';
 
-$db->makeQuery($query, $userEmail, $userPassword);
+// $db->makeQuery($query, $userEmail, $userPassword);
+// $db->
 
-if (!$db->result) {
-  die("Invalid Query: " . $db->result);
-}
-
-if($db->numRowsReturned == 1) {
-  foreach ($db->result as &$row) {
-    $userId = $row['Id'];
-    $userName = $row['Name'];
-    $_SESSION["Id"] = $userId;
-  }
-}
-else {
-  die("User does not exist");
-}
+// if (!$db->result) {
+//   die("Invalid Query: " . $db->result);
+// }
+//
+// if($db->numRowsReturned == 1) {
+//   foreach ($db->result as &$row) {
+//     $userId = $row['Id'];
+//     $userName = $row['Name'];
+//     $_SESSION["Id"] = $userId;
+//   }
+// }
+// else {
+//   die("User does not exist");
+// }
 
 print "Welcome $userName";
 
