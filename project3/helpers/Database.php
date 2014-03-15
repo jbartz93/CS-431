@@ -42,7 +42,7 @@ class Database {
   }
 
   public function splitQuery($query, $queryArgs) {
-    $pieces = split("?", $query);
+    $pieces = explode("?", $query);
     return $pieces;
   }
 }
