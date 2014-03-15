@@ -3,6 +3,9 @@
   include('helpers/footer.php');
 
   if ($userId) {
+    echo "Welcome $userId";
+  }
+  else {
 ?>
 
     <form method="post" action="loginsubmit.php">
@@ -14,9 +17,6 @@
 <?php
 
   }
-  else {
-    echo "Welcome $userId";
-  }
 
-include('helpers/footer.php');
+  include('helpers/footer.php');
 ?>
