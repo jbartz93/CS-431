@@ -10,6 +10,7 @@ class Database {
   private $database  = "heroku_ad3d13b38fcc39e";
 
   public $result = array();
+  public $numRows = 0;
 
   public $error = null;
 
@@ -29,12 +30,11 @@ class Database {
 
   public function makeQuery($query) {
     $mysqlResult = mysql_query($query, $this->connection);
+    $this->numRows = mysql_num_rows($db->result);
 
     while($row = mysql_fetch_assoc($mysqlResult)) {
       $this->result[] = $row;
     }
-
-    print_r($this->result);
 
     if (!$this->result) {
       $this->error = mysql_error();

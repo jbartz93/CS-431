@@ -12,7 +12,8 @@ if (!$db->result) {
   die("Invalid Query: " . $db->result);
 }
 
-// $numRows = mysql_num_rows($db->result);
+$numRows = $db->numRows;
+echo $numRows;
 //
 // if($numRows == 1) {
   foreach ($db->result as &$row) {
