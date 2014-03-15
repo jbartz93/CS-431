@@ -13,7 +13,7 @@ echo $db->makeQuery($query2, "hello", "goodbye");
 
 
 if (!$db->result) {
-  die(print_r($db->result));
+  die(print_r($db->error));
 }
 
 $numRows = $db->numRows;
