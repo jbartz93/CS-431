@@ -28,4 +28,6 @@
     <title><?php echo $pageTitle; ?></title>
   </head>
   <body>
+<?php if ($userId) { ?>
     <a href="http://cs431jjs.herokuapp.com/project3/logout.php">Log Out</a>
+<?php } ?>
