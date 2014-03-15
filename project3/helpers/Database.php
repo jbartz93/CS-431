@@ -34,6 +34,8 @@ class Database {
 
     $query = $this->splitQuery($query, $args);
 
+    print_r($query);
+
     $mysqlResult = mysql_query($query, $this->connection);
 
     if (!$mysqlResult) {
@@ -55,11 +57,11 @@ class Database {
     for($i = 0; $i < count($pieces); $i++) {
       $newQuery .= $pieces[$i];
       if ($i < count($queryArgs)) {
-        $newQuery .= "'";
-        $newQuery .= $queryArgs[$i];
-        $newQuery .= "'";
+        $newQuery .= "'%s'";
       }
     }
+
+    $newQuery = vsprintf($newQuery, $queryArgs);
 
     return $newQuery;
   }
