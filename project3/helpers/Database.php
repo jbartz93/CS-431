@@ -28,7 +28,11 @@ class Database {
     }
   }
 
-  public function makeQuery($query) {
+  public function makeQuery() {
+    $args = func_get_args();
+    $query = array_shift($args);
+    $query = $this->splitQuery($query, $args);
+
     $mysqlResult = mysql_query($query, $this->connection);
     $this->numRows = mysql_num_rows($mysqlResult);
 
@@ -48,7 +52,9 @@ class Database {
     for($i = 0; $i < count($pieces); $i++) {
       $newQuery .= $pieces[$i];
       if ($i < count($queryArgs)) {
+        $newQuery .= "'";
         $newQuery .= $queryArgs[$i];
+        $newQuery .= "'";
       }
     }
 
