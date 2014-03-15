@@ -60,7 +60,9 @@ class Database {
     for($i = 0; $i < count($pieces); $i++) {
       $newQuery .= $pieces[$i];
       if ($i < count($queryArgs)) {
-        $newQuery .= "'%s'";
+        $newQuery .= "'";
+        $newQuery .= $queryArgs[$i];
+        $newQuery .= "'";
       }
     }
 
