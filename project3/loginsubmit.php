@@ -13,18 +13,17 @@ if (!$db->result) {
 }
 
 $numRows = $db->numRows;
-echo $numRows;
-//
-// if($numRows == 1) {
+
+if($numRows == 1) {
   foreach ($db->result as &$row) {
     $userId = $row['Id'];
     $userName = $row['Name'];
     $_SESSION["Id"] = $userId;
   }
-// }
-// else {
-//   die("User does not exist");
-// }
+}
+else {
+  die("User does not exist");
+}
 
 print "Welcome $userName";
 
