@@ -15,7 +15,7 @@
     $numRows = $db->numRows;
 
     if($numRows == 1) {
-      print_r($db->result);
+      echo 'Welcome' . $db->result[0]['Name'];
     }
   }
   else {
