@@ -61,6 +61,10 @@ class Database {
       }
     }
 
+    foreach($queryArgs as &$arg) {
+      $arg = mysql_real_escape_string($arg);
+    }
+
     $newQuery = vsprintf($newQuery, $queryArgs);
 
     return $newQuery;
