@@ -10,7 +10,7 @@ class Database {
   private $database  = "heroku_ad3d13b38fcc39e";
 
   public $result = array();
-  public $numRowsReturned = 0;
+
   public $error = null;
 
   public function __construct() {
@@ -27,37 +27,18 @@ class Database {
     }
   }
 
-  public function makeQuery() {
-    $curQueryArgs = func_get_args();
-    $query = array_shift($curQueryArgs);
-
-    $newQuery = $this->formatQuery($query, $curQueryArgs);
-
+  public function makeQuery($query) {
     $mysqlResult = mysql_query($query, $this->connection);
 
-    while($row = mysql_affected_rows($mysqlResult)) {
+    while($row = mysql_fetch_assoc($mysqlResult)) {
       $this->result[] = $row;
     }
 
-    $this->numRowsReturned = mysql_num_rows($mysqlResult);
+    print_r($this->result);
 
     if (!$this->result) {
       $this->error = mysql_error();
     }
-  }
-
-  public function formatQuery($query, $queryArgs) {
-    $pieces = split("?", $query);
-    $newQuery = "";
-
-    for($i = 0; $i < $pieces.length(), $i++)
-      $newQuery .= $newQuery[$i];
-      if ($i < $queryArgs.length()) {
-        $newQuery .= $queryArgs[$i];
-      }
-    }
-
-    return $newQuery;
   }
 }
 
