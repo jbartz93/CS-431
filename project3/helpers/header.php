@@ -13,7 +13,13 @@
 
   require_once 'helpers/Database.php';
 
-  $db = new Database();
+  try {
+    $db = new Database();
+  }
+  catch (Exception $e) {
+    die("Error: " . $e);
+  }
+
 ?>
 
 <html>

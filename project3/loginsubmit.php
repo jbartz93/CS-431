@@ -26,6 +26,9 @@ else {
   die("User does not exist");
 }
 
+header("Location: http://cs431jjs.herokuapp.com/project3/main.php");
+exit();
+
 print "Welcome $userName";
 
 include("helpers/footer.php");
