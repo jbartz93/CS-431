@@ -40,6 +40,11 @@ class Database {
       $this->error = mysql_error();
     }
   }
+
+  public function splitQuery($query, $queryArgs) {
+    $pieces = split("?", $query);
+    return $pieces;
+  }
 }
 
 ?>
