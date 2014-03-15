@@ -9,7 +9,7 @@ $query = sprintf("SELECT Id, Name FROM Users WHERE Email='%s' AND Password=SHA1(
 // $db->makeQuery($query);
 $query2 = "SELECT Id, Name FROM Users WHERE Email=? AND Password=SHA1(?) LIMIT 1";
 
-echo $db->makeQuery($query2, array("hello", "goodbye"));
+echo $db->makeQuery($query2, "hello", "goodbye");
 
 
 if (!$db->result) {
