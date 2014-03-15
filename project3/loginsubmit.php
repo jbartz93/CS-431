@@ -12,6 +12,10 @@ if (!$db->result) {
   die("Invalid Query: " . $db->result);
 }
 
+$query2 = "SELECT Id, Name FROM Users WHERE Email=? AND Password=SHA1(?) LIMIT 1";
+
+echo $db->splitQuery($query2, array("hello", "goodbye"));
+
 $numRows = $db->numRows;
 
 if($numRows == 1) {
