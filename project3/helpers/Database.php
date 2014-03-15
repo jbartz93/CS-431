@@ -46,7 +46,7 @@ class Database {
 
   }
 
-  public function formatQuery($query, $queryArgs) {
+  private function formatQuery($query, $queryArgs) {
     $pieces = explode("?", $query);
     $newQuery = "";
 
