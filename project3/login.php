@@ -1,5 +1,5 @@
 <?php
-
+  $pageTitle = "Login";
   include('helpers/footer.php');
 
   if ($userId) {
