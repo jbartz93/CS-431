@@ -34,7 +34,7 @@ class Database {
 
     print_r($args);
     echo $query;
-    
+
     $query = $this->splitQuery($query, $args);
 
     echo $query;
@@ -60,9 +60,7 @@ class Database {
     for($i = 0; $i < count($pieces); $i++) {
       $newQuery .= $pieces[$i];
       if ($i < count($queryArgs)) {
-        $newQuery .= "'";
-        $newQuery .= $queryArgs[$i];
-        $newQuery .= "'";
+        $newQuery .= "'%s'";
       }
     }
 
