@@ -34,7 +34,8 @@
 ?>
 
   <form method="POST" action="addCourseSubmit.php">
-    <select name="department">
+    <label for="id">Department</label>
+    <select id="department" name="department">
       <option value="" selected>Choose a Department</option>
 <?php
     foreach($departments as $department) {
@@ -43,6 +44,21 @@
 ?>
 
     </select>
+    <label for="title">Course Title</label>
+    <input type="text" id="title" name="title"></input>
+    <label for="number">Course Number</label>
+    <input type="text" name="number" id="number" name="number">Course Number</input>
+    <label for="description">Description</label>
+    <textarea cols="50" rows="10" id="description" name="description"></textarea>
+    <label for"creditNumber">Number of Credits</label>
+    <select id="creditNumber" name="creditNumber">
+      <option value="" selected>Credit Number</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+    <button type="submit">Create Course</button>
   </form>
 
 <?php
