@@ -2,6 +2,7 @@
   include("helpers/header.php");
 
   if (isset($_POST['department'])) {
+    die($_POST['department']);
     $department = intval($_POST['department']);
   }
   else {
