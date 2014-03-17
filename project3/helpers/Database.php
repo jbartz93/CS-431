@@ -68,6 +68,8 @@ class Database {
       }
     }
 
+    print_r($queryArgs);
+
     foreach($queryArgs as &$arg) {
       if (is_string($arg)) {
         $arg = mysql_real_escape_string($arg);
