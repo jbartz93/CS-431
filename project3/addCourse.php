@@ -38,8 +38,8 @@
 
 <?php
     foreach($departments as $department) {
-      echo '<option value="' . $department['Id'] . '">' . $department['Abbreviation'] . '</option>'
-    } 
+      echo '<option value="' . $department['Id'] . '">' . $department['Abbreviation'] . '</option>';
+    }
 ?>
 
     </select>
