@@ -6,7 +6,7 @@
     $db->makeQuery("SELECT AddCourses FROM Permissions WHERE UserId = ? LIMIT 1;", $userId);
   }
   catch(Exception $e) {
-    die($e.getMessage());
+    die($e->getMessage());
   }
 
   if($db->numRows == 1) {
@@ -19,7 +19,7 @@
     $db->makeQuery("SELECT Id, Abbreviation FROM Departments");
   }
   catch(Exception $e) {
-    die($e.getMessage());
+    die($e->getMessage());
   }
 
   $departments = array();

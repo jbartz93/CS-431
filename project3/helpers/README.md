@@ -44,7 +44,7 @@ try {
   $db->makeQuery($query, "jd@431.edu", "CS");
 }
 catch (Exception $e) {
-  die("Database connection invalid.");
+  die($e->getMessage());
 }
 
 if ($db->numRows > 0) {
