@@ -76,7 +76,8 @@ class Database {
 
     $newQuery = vsprintf($newQuery, $queryArgs);
 
-    die($newQuery);
+    if($newQuery[0] == "I")
+      die($newQuery);
 
     return $newQuery;
   }
