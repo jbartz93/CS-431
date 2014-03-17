@@ -3,7 +3,7 @@
 
   session_destroy();
 
-  header("Location: http://cs431jjs.herokuapp.com/project3/logout.php");
+  header("Location: http://cs431jjs.herokuapp.com/project3/login.php");
   exit();
 
   include("helpers/footer.php");
