@@ -4,6 +4,8 @@
   ini_set('display_errors', 'On');
   error_reporting(E_ALL);
 
+  $needsToBeLoggedIn = true;
+
   if(isset($_SESSION["Id"])) {
     $userId = $_SESSION["Id"];
   }
@@ -30,4 +32,8 @@
   <body>
 <?php if ($userId) { ?>
     <a href="http://cs431jjs.herokuapp.com/project3/logout.php">Log Out</a>
-<?php } ?>
+<?php
+  } else if (!$userId && $needsToBeLoggedIn) {
+    die("You need to be logged in to view this");
+  }
+?>
