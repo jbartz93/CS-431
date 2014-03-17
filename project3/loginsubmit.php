@@ -1,4 +1,5 @@
 <?php
+  $needsToBeLoggedIn = false;
   include('helpers/header.php');
 
   $userEmail = $_POST['email'];
