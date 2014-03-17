@@ -31,8 +31,6 @@
     die("No departments exist yet. You should create one.");
   }
 
-  print_r($departments);
-
 ?>
 
   <form method="POST" action="addCourseSubmit.php">

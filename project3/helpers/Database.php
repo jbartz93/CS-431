@@ -44,6 +44,8 @@ class Database {
       $this->result[] = $row;
     }
 
+    print_r($this->result);
+
   }
 
   private function formatQuery($query, $queryArgs) {
