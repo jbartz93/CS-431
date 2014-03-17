@@ -76,6 +76,8 @@ class Database {
 
     print_r($queryArgs);
 
+    print_r($newQuery);
+
     $newQuery = vsprintf($newQuery, $queryArgs);
 
     if($newQuery[0] == "I")

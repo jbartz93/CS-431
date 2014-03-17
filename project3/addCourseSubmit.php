@@ -16,7 +16,7 @@
   }
 
   if (isset($_POST['number'])) {
-    $courseNumber = $_POST['number'];
+    $courseNumber = intval($_POST['number']);
   }
   else {
     die("Need to specify a course number");
