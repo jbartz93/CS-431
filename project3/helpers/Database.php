@@ -27,6 +27,10 @@ class Database {
   }
 
   public function makeQuery() {
+    // reseting variables that change from request to request
+    $this->result = array();
+    $this->numRows = 0;
+
     $args = func_get_args();
     $query = array_shift($args);
 
@@ -43,11 +47,6 @@ class Database {
     while($row = mysql_fetch_assoc($mysqlResult)) {
       $this->result[] = $row;
     }
-
-    echo 'test';
-    print_r($this->result);
-    echo 'hello';
-
   }
 
   private function formatQuery($query, $queryArgs) {
