@@ -44,7 +44,9 @@ class Database {
       $this->result[] = $row;
     }
 
+    echo 'test';
     print_r($this->result);
+    echo 'hello';
 
   }
 
