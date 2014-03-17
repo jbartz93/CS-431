@@ -76,6 +76,8 @@ class Database {
 
     $newQuery = vsprintf($newQuery, $queryArgs);
 
+    die($newQuery);
+
     return $newQuery;
   }
 }

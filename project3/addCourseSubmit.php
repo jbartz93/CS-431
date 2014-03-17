@@ -2,7 +2,6 @@
   include("helpers/header.php");
 
   if (isset($_POST['department'])) {
-    die($_POST['department']);
     $department = intval($_POST['department']);
   }
   else {
@@ -26,6 +25,9 @@
   if (isset($_POST['description'])) {
     $description = $_POST['description'];
   }
+  else {
+    $description = NULL;
+  }
 
   if (isset($_POST['creditNumber'])) {
     $creditNumber = intval($_POST['creditNumber']);
@@ -35,7 +37,7 @@
   }
 
   try {
-    $db->makeQuery("INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue) VALUES (?, ?, ?, ?, ?)", $title, $department, $courseNumber, isset($description) ? $description : NULL, $creditNumber);
+    $db->makeQuery("INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue) VALUES (?, ?, ?, ?, ?)", $title, $department, $courseNumber, $description, $creditNumber);
   }
   catch (Exception $e) {
     die($e->getMessage());
