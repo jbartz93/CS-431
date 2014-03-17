@@ -35,7 +35,7 @@
 
   <form method="POST" action="addCourseSubmit.php">
     <select name="department">
-
+      <option value="" selected>Choose a Department</option>
 <?php
     foreach($departments as $department) {
       echo '<option value="' . $department['Id'] . '">' . $department['Abbreviation'] . '</option>';

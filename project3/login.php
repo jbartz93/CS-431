@@ -1,6 +1,6 @@
 <?php
   $pageTitle = "Login";
-  $needsToBeLoggedIne = false;
+  $needsToBeLoggedIn = false;
   include('helpers/header.php');
 
   if ($userId) {
