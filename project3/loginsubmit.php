@@ -1,6 +1,5 @@
 <?php
-  $needsToBeLoggedIn = false;
-  include('helpers/header.php');
+  include('helpers/base.php');
 
   $userEmail = $_POST['email'];
   $userPassword = $_POST['password'];
@@ -27,10 +26,6 @@
     die("User does not exist");
   }
 
-  header("Location: http://cs431jjs.herokuapp.com/project3/main.php");
+  header("Location: " . BASE_URL . "main.php");
   exit();
-
-  print "Welcome $userName";
-
-  include("helpers/footer.php");
 ?>

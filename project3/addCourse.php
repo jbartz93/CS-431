@@ -1,5 +1,6 @@
 <?php
   $pageTitle = "Add Course";
+  include("helpers/base.php");
   include("helpers/header.php");
 
   try {

@@ -1,5 +1,5 @@
 <?php
-  include("helpers/header.php");
+  include("helpers/base.php");
 
   if (isset($_POST['department'])) {
     $department = intval($_POST['department']);
@@ -43,7 +43,7 @@
     die($e->getMessage());
   }
 
-  header("Location: http://jj431.herokuapp.com/project3/registered.php");
+  header("Location: " . BASE_URL . "registered.php");
   exit();
 
   include("helpers/footer.php");

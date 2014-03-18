@@ -1,10 +1,8 @@
 <?php
-  include('helpers/header.php');
+  include('helpers/base.php');
 
   session_destroy();
 
-  header("Location: http://cs431jjs.herokuapp.com/project3/login.php");
+  header("Location: " . BASE_URL . "login.php");
   exit();
-
-  include("helpers/footer.php");
 ?>

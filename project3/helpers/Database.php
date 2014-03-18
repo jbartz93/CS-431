@@ -42,10 +42,13 @@ class Database {
       throw new Exception("Invalid Query:" . mysql_error());
     }
 
-    $this->numRows = mysql_num_rows($mysqlResult);
+    // hacky way to figure out if the last query was a select
+    if ($query[0] == 'S') {
+      $this->numRows = mysql_num_rows($mysqlResult);
 
-    while($row = mysql_fetch_assoc($mysqlResult)) {
-      $this->result[] = $row;
+      while($row = mysql_fetch_assoc($mysqlResult)) {
+        $this->result[] = $row;
+      }
     }
   }
 
@@ -53,35 +56,24 @@ class Database {
     $pieces = explode("?", $query);
     $newQuery = "";
 
-    for($i = 0; $i < count($pieces); $i++) {
-      $newQuery .= $pieces[$i];
-      if ($i < count($queryArgs)) {
-        if (is_float($queryArgs[$i])) {
-          $newQuery .= "'%1\$.1f'";
-        }
-        else if (is_int($queryArgs[$i])) {
-          $newQuery .= "'%1\$u'";
-        }
-        else {
-          $newQuery .= "'%s'";
-        }
-      }
-    }
-
     foreach($queryArgs as &$arg) {
       if (is_string($arg)) {
         $arg = mysql_real_escape_string($arg);
       }
     }
 
-    print_r($queryArgs);
-
-    print_r($newQuery);
-
-    $newQuery = vsprintf($newQuery, $queryArgs);
-
-    if($newQuery[0] == "I")
-      die($newQuery);
+    for($i = 0; $i < count($pieces); $i++) {
+      $newQuery .= $pieces[$i];
+      if ($i < count($queryArgs)) {
+        if (is_string($queryArgs[$i])) {
+          $newQuery .= "'";
+        }
+        $newQuery .= $queryArgs[$i];
+        if (is_string($queryArgs[$i])) {
+          $newQuery .= "'";
+        }
+      }
+    }
 
     return $newQuery;
   }
