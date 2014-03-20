@@ -1,3 +1,3 @@
 <?php
-  echo "<a href='" . BASE_URL . "login.php'>Welcome</a>";
+  echo "<a href='project3/login.php'>Welcome</a>";
 ?>
