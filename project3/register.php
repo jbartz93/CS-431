@@ -19,12 +19,12 @@ catch(Exception $e)
 {
 	echo $e->getMessage();
 }
-foreach($db->$result as $row)
+foreach($db->result as $row)
 {
 	print "<input type='radio' name='department' value='" . $row['$Id'] . "' required>" . $row['FullName'] . "<br>";
 }
 ?>
-Permissions:
+What permissions would you like?
 <input type="checkbox" name="givegrade"> Give Grades<br>
 <input type="checkbox" name="viewall"> View All Grades<br>
 <input type="checkbox" name="changeall"> Change Grades<br>
