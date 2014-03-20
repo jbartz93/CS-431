@@ -1,18 +1,18 @@
 <?php
 	include('helpers/base.php');
-	$user = $_POST['name'];
-	$pass = $_POST['password'];
-	$email = $_POST['email'];
-	$dept = $_POST['department'];
-	$give = $_POST['givegrade'];
-	$view = $_POST['viewall'];
-	$change = $_POST['changeall'];
-	$add = $_POST['addcourse'];
+	$user = $_REQUEST['name'];
+	$pass = $_REQUEST['password'];
+	$email = $_REQUEST['email'];
+	$dept = $_REQUEST['department'];
+	$give = $_REQUEST['givegrade'];
+	$view = $_REQUEST['viewall'];
+	$change = $_REQUEST['changeall'];
+	$add = $_REQUEST['addcourse'];
 
-	$query = "insert into users (Name, Password, Email, DeptId) values (?, ?, ?, ?)";
+	$query = "insert into users (Name, Password, Email, DeptId) values (?, sha1(?), ?, ?)";
 	try
 	{
-		$db->makeQuery($query, $user, sha1($pass), $email, $dept);
+		$db->makeQuery($query, $user, $pass, $email, $dept);
 	}
 	catch (Exception $e)
 	{
