@@ -25,7 +25,7 @@ if($db->numRows == 0)
 }
 foreach($db->result as $row)
 {
-	print "<input type='radio' name='department' value='" . $row['$Id'] . "' required>" . $row['FullName'] . "<br>";
+	print "<input type='radio' name='department' value='" . $row['Id'] . "' required>" . $row['FullName'] . "<br>";
 }
 ?>
 <br>
