@@ -10,10 +10,12 @@
 	$add = $_POST['addcourse'];
 
 	$query = "insert into users (Name, Password, Email, DeptId) values (?, ?, ?, ?)";
-	try {
+	try
+	{
 		$db->makeQuery($query, $user, sha1($pass), $email, $dept);
 	}
-	catch (Exception $e) {
+	catch (Exception $e)
+	{
 		die("Error: " . $e);
 	}
 	$userId = $db->insertId;
@@ -23,10 +25,12 @@
 	$view = ($view == "on" ? 1 : 0);
 	$change = ($change == "on" ? 0 : 1);
 	$add = ($add == "on" ? 0 : 1);
-	try {
+	try
+	{
 		$db->makeQuery($query, $userId, $give, $view, $change, $add);
 	}
-	catch (Exception $e) {
+	catch (Exception $e)
+	{
 		die("Error: " . $e);
 	}
 	header("Location: " . BASE_URL . "main.php");

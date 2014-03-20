@@ -32,7 +32,7 @@ foreach($db->result as $row)
 What permissions would you like?<br>
 <input type="checkbox" name="givegrade"> Give Grades<br>
 <input type="checkbox" name="viewall"> View All Grades<br>
-<input type="checkbox" name="changeall"> Change Grades<br>
+<input type="checkbox" name="changeall"> Change All Grades<br>
 <input type="checkbox" name="addcourse"> Add Courses<br>
 <button type="submit">Register</button>
 </form>

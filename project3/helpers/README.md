@@ -47,6 +47,7 @@ Heroku does not support the `mysqli` extension so we are going to have to use th
 + `makeQuery($query, [$queryParameters])` - call this to execute a query on the database. The first argument is a query with `?` in the place of the variable items. The second argument and beyond are optional. These are the items to put in place of the question marks in the query. They should be in the order that they are in the query.
 + `result` - call this variable after executing a query if rows are returned. It holds the result of the query as a two-dimensional array. The rows returned are the inner arrays.
 + `numRows` - call this variable after executing a query if you want to find out how many rows the query returned.
++ `insertId` - contains the id of the last inserted row
 
 ###Errors
 
