@@ -21,10 +21,10 @@
 	$userId = $db->insertId;
 	$_SESSION["Id"] = $userId;
 	$query = "insert into permissions (UserId, GiveGrade, ViewAllGrades, ChangeAllGrades, AddCourses) values (?, ?, ?, ?, ?)";
-	$give = ($give == "on" ? 0 : 1);
+	$give = ($give == "on" ? 1 : 0);
 	$view = ($view == "on" ? 1 : 0);
-	$change = ($change == "on" ? 0 : 1);
-	$add = ($add == "on" ? 0 : 1);
+	$change = ($change == "on" ? 1 : 0);
+	$add = ($add == "on" ? 1 : 0);
 	try
 	{
 		$db->makeQuery($query, $userId, $give, $view, $change, $add);

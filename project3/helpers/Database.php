@@ -36,9 +36,7 @@ class Database {
     $query = array_shift($args);
 
     $query = $this->formatQuery($query, $args);
-	echo $query;
-	echo '<br>';
-
+	
     $mysqlResult = mysql_query($query, $this->connection);
 
     if (!$mysqlResult) {
