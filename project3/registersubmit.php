@@ -10,3 +10,6 @@ $change = $_POST['changeall'];
 $add = $_POST['addcourse'];
 echo $add;
 echo $dept;
+
+$query = "insert into users (Name, Password, Email, DeptId) values (?, ?, ?, ?)";
+//$_SESSION["Id"] = $userId;

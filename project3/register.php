@@ -13,7 +13,7 @@ Department:<br>
 <?php
 try
 {
-	$db->makeQuery("select Id, FullName from Departments");
+	$db->makeQuery("select Id, FullName from departments");
 }
 catch(Exception $e)
 {
@@ -29,7 +29,7 @@ foreach($db->result as $row)
 }
 ?>
 <br>
-What permissions would you like?
+What permissions would you like?<br>
 <input type="checkbox" name="givegrade"> Give Grades<br>
 <input type="checkbox" name="viewall"> View All Grades<br>
 <input type="checkbox" name="changeall"> Change Grades<br>

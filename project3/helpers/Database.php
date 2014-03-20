@@ -11,6 +11,7 @@ class Database {
 
   public $result = array();
   public $numRows = 0;
+  public $insertId = 0;
 
   public function __construct() {
     $this->connection = mysql_connect($this->hostname, $this->username, $this->password);
@@ -43,13 +44,14 @@ class Database {
     }
 
     // hacky way to figure out if the last query was a select
-    if ($query[0] == 'S') {
+    if ($query[0] == 'S' or $query[0] == 's') {
       $this->numRows = mysql_num_rows($mysqlResult);
 
       while($row = mysql_fetch_assoc($mysqlResult)) {
         $this->result[] = $row;
       }
     }
+	$this->insertId = mysql_insert_id();
   }
 
   private function formatQuery($query, $queryArgs) {
