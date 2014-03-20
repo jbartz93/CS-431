@@ -9,7 +9,7 @@ include('helpers/base.php');
 Name: <input type="text" required name="name"><br>
 Password: <input type="password" required name="password"><br>
 Email: <input type="email" required name="email"><br>
-Department:
+Department:<br>
 <?php
 try
 {
@@ -19,11 +19,16 @@ catch(Exception $e)
 {
 	echo $e->getMessage();
 }
+if($db->numRows == 0)
+{
+	print "There are no departments at this school<br>";
+}
 foreach($db->result as $row)
 {
 	print "<input type='radio' name='department' value='" . $row['$Id'] . "' required>" . $row['FullName'] . "<br>";
 }
 ?>
+<br>
 What permissions would you like?
 <input type="checkbox" name="givegrade"> Give Grades<br>
 <input type="checkbox" name="viewall"> View All Grades<br>
@@ -31,3 +36,6 @@ What permissions would you like?
 <input type="checkbox" name="addcourse"> Add Courses<br>
 <button type="submit">Register</button>
 </form>
+<?php
+include('helpers/footer.php');
+?>
