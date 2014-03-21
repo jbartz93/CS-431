@@ -13,8 +13,8 @@ include('helpers/header.php');
 	<?php
 		$grades = "select Abbreviation, CourseNumber, Title, GradeGPA, CreditValue from Courses " .
 									"join Departments on Departments.Id = Courses.DeptId " .
-									"join CourseInstance on CourseInstance.CourseId = Courses.Id " .
-									"join Registration on Registration.CourseInstanceId = CourseInstance.Id " .
+									"join CourseInstances on CourseInstances.CourseId = Courses.Id " .
+									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
 									"where UserId = ? order by Semester, Abbreviation, CourseNumber";
 		$db->makeQuery($grades, $userId);
 		$totalGPA = 0;
