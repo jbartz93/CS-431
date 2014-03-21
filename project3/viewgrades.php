@@ -20,7 +20,7 @@ include('helpers/header.php');
 		$totalCredits = 0;
 		foreach($db->result as $row)
 		{
-			print "<td>$row['Abbreviation'] $row['CourseNumber']</td><td>$row['Title']</td><td>$row['GradeGPA']</td><td>$row['CreditValue']</td>";
+			print "<td>".$row['Abbreviation'] . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>".$row['GradeGPA']."</td><td>".$row['CreditValue']."</td>";
 			$totalGPA += $gpa*$credits;
 			$totalCredits += $credits;
 		}
