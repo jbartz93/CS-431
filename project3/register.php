@@ -40,7 +40,8 @@ Enter new courses by id:
 	<input type='text' name='c5'>
 	<input type='text' name='c6'>
 	<button type="submit">Submit</button>
-</form>
+</form><br>
+<a href='courselookup.php'>Course Lookup</a>
 <?php
 	include('helpers/footer.php');
 ?>
