@@ -13,8 +13,8 @@
 	<?php
 		$courses = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, Title, CreditValue from Courses " .
 									"join Departments on Departments.Id = Courses.DeptId " .
-									"join CourseInstance on CourseInstance.CourseId = Courses.Id " . 
-									"join Registration on Registration.CourseInstanceId = CourseInstance.Id " .
+									"join CourseInstances on CourseInstances.CourseId = Courses.Id " . 
+									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
 									"where UserId = ? order by Semester, Abbreviation, CourseNumber";
 		$db->makeQuery($courses, $userId);
 		$totalGPA = 0;
