@@ -8,6 +8,6 @@
     <a href="<?php echo BASE_URL ?>logout.php">Log Out</a>
 <?php
   } else if (!$userId && $needsToBeLoggedIn) {
-    die("You need to be logged in to view this");
+    die("You need to be <a href='".BASE_URL."login.php'>logged in</a> to view this");
   }
 ?>
