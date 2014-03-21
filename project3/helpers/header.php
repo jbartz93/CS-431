@@ -16,10 +16,10 @@
 			foreach($db->results as $row)
 			{
 				$granted = array(
-					"GiveGrade" => $row["GiveGrade"];
-					"ViewAllGrades" => $row["ViewAllGrades"];
-					"ChangeAllGrades" => $row["ChangeAllGrades"];
-					"AddCourses" => $row["AddCourses"];
+					"GiveGrade" => $row["GiveGrade"],
+					"ViewAllGrades" => $row["ViewAllGrades"],
+					"ChangeAllGrades" => $row["ChangeAllGrades"],
+					"AddCourses" => $row["AddCourses"],
 				);
 			}
 		}
