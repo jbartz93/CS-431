@@ -21,7 +21,7 @@
 		{
 			print "<tr><td>".$row['Abbreviation'] . ' ' . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>".$row['CreditValue']."</td>";
 	?>
-			<td><form method='get' action='dropsubmit.php?courseId=<?php echo $row['Id']?>'><button type='submit'>Drop</button></form></td></tr>
+			<td><button type='button' onclick='window.location.assign(dropsubmit.php?courseId=<?php echo $row['Id']?>)'>Drop</button></td></tr>
 	<?php
 		}
 	?>

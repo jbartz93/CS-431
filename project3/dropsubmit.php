@@ -13,4 +13,5 @@
 		die($e);
 	}
 	include('helpers/footer.php');
+	header('Location: ' . BASEURL . 'register.php');
 ?>
