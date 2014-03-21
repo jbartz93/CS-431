@@ -13,7 +13,7 @@
 			} catch(Exception $e) {
 				die($e->getMessage());
 			}
-			foreach($db->results as $row)
+			foreach($db->result as $row)
 			{
 				$granted = array(
 					"GiveGrade" => $row["GiveGrade"],
