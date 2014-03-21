@@ -29,7 +29,7 @@
 		}
 		if($row['AddCourses'] == 1)
 		{
-			print '<li><a href="addcourses.php">Add courses</a></li>';
+			print '<li><a href="addCourse.php">Add courses</a></li>';
 		}
 	}
 ?>

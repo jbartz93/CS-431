@@ -7,7 +7,7 @@
 		
 <?php
 	if ($userId) {
-		if($permissions) {
+		if(@$permissions) {
 			try {
 				$db->makeQuery("select * from Permissions where UserId=? limit 1", $userId);
 			} catch(Exception $e) {

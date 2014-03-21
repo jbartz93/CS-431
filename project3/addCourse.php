@@ -1,19 +1,11 @@
 <?php
   $pageTitle = "Add Course";
+  $permissions = true;
   include("helpers/base.php");
   include("helpers/header.php");
 
-  try {
-    $db->makeQuery("SELECT AddCourses FROM Permissions WHERE UserId = ? LIMIT 1;", $userId);
-  }
-  catch(Exception $e) {
-    die($e->getMessage());
-  }
-
-  if($db->numRows == 1) {
-    if(!$db->result[0]["AddCourses"]) {
-      die("User not allowed to add courses.");
-    }
+  if(!$granted["AddCourse"]) {
+    die("User not allowed to add courses.");
   }
 
   try {
