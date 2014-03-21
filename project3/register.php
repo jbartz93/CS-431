@@ -33,13 +33,14 @@
 <h3>Register</h3>
 Enter new courses by id:
 <form method='get' action='registersubmit.php'>
-	<input type=text name='c1' required>
-	<input type=text name='c2'>
-	<input type=text name='c3'>
-	<input type=text name='c4'>
-	<input type=text name='c5'>
-	<input type=text name='c6'>
+	<input type='text' name='c1' required>
+	<input type='text' name='c2'>
+	<input type='text' name='c3'>
+	<input type='text' name='c4'>
+	<input type='text' name='c5'>
+	<input type='text' name='c6'>
+	<button type="submit">Submit</button>
 </form>
-<?php>
+<?php
 	include('helpers/footer.php');
 ?>
