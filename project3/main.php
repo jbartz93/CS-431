@@ -1,4 +1,5 @@
 <?php
+	$pageTitle = "431 University";
 	include('helpers/header.php');
 	include('helpers/base.php');
 ?>
