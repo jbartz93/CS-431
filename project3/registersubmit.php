@@ -36,6 +36,6 @@
 			$db->makeQuery($query, $userId, $c6);
 		} catch(Exception $e) {}
 	}
-	header('Location: ' . BASEURL . 'register.php');
+	header('Location: ' . BASE_URL . 'register.php');
 
 ?>

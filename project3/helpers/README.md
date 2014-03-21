@@ -33,6 +33,7 @@ This should be added to the top of every page that the user will see. Include it
 
 + set `$pageTitle` before including header and that will set the page's `title` tag
 + if a page should be accessible by users who are not logged in set `$needsToBeLoggedIn` to be false before including header
++ setting `$permissions` to be true will create an array named `$granted` with key/value pairs coresponding to the table column names
 
 ##Footer
 
