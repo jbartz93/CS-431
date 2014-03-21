@@ -11,7 +11,7 @@
 	<th>Credits</th>
 	<th>Drop</th>
 	<?php
-		$courses = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, Title, CreditValue from Courses " .
+		$courses = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, SectionNumber, Title, CreditValue from Courses " .
 									"join Departments on Departments.Id = Courses.DeptId " .
 									"join CourseInstances on CourseInstances.CourseId = Courses.Id " . 
 									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
@@ -19,9 +19,9 @@
 		$db->makeQuery($courses, $userId);
 		foreach($db->result as $row)
 		{
-			print "<tr><td>".$row['Abbreviation'] . ' ' . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>".$row['CreditValue']."</td>";
+			print "<tr><td>".$row['Abbreviation'] . ' ' . $row['CourseNumber']. '-' . $row['SectionNumber'] . "</td><td>".$row['Title']."</td><td>".$row['CreditValue']."</td>";
 	?>
-			<td><button type='button' onclick='window.location.assign(dropsubmit.php?courseId=<?php echo $row['Id']?>)'>Drop</button></td></tr>
+			<td><button type='button' onclick='window.location.assign("dropsubmit.php?courseId=<?php echo $row['Id']?>")'>Drop</button></td></tr>
 	<?php
 		}
 	?>
