@@ -4,7 +4,7 @@
   include("helpers/base.php");
   include("helpers/header.php");
 
-  if(!$granted["AddCourse"]) {
+  if(!$granted["AddCourses"]) {
     die("User not allowed to add courses.");
   }
 
