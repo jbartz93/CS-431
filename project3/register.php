@@ -1,41 +1,45 @@
-<?php
-$pageTitle = "Register";
-$needsToBeLoggedIn = false;
-include('helpers/base.php');
-include('helpers/header.php');
+<?php>
+	$pageTitle="Register for Courses";
+	include('helpers/base.php');
+	include('helpers/header.php');
 ?>
-<h2>Welcome to our incredibly insecure system!</h2>
-<form method="post" action="registersubmit.php">
-Name: <input type="text" required name="name"><br>
-Password: <input type="password" required name="password"><br>
-Email: <input type="email" required name="email"><br>
-Department:<br>
-<?php
-try
-{
-	$db->makeQuery("select Id, FullName from departments");
-}
-catch(Exception $e)
-{
-	echo $e->getMessage();
-}
-if($db->numRows == 0)
-{
-	print "There are no departments at this school<br>";
-}
-foreach($db->result as $row)
-{
-	print "<input type='radio' name='department' value='" . $row['Id'] . "' required>" . $row['FullName'] . "<br>";
-}
-?>
-<br>
-What permissions would you like?<br>
-<input type="checkbox" name="givegrade"> Give Grades<br>
-<input type="checkbox" name="viewall"> View All Grades<br>
-<input type="checkbox" name="changeall"> Change All Grades<br>
-<input type="checkbox" name="addcourse"> Add Courses<br>
-<button type="submit">Register</button>
+<h3>Courses you are in</h3>
+<table>
+<tr>
+	<th>Course Number</th>
+	<th>Course Title</th>
+	<th>Credits</th>
+	<th>Drop</th>
+	<?php
+		$grades = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, Title, CreditValue from Courses " +
+									"join Departments on Departments.Id = Courses.DeptId " +
+									"join CourseInstance on CourseInstance.CourseId = Courses.Id " + 
+									"join Registration on Registration.CourseInstanceId = CourseInstance.Id " +
+									"where UserId = ? order by Semester, Abbreviation, CourseNumber";
+		$db->makeQuery($grades, $userId);
+		$totalGPA = 0;
+		$totalCredits = 0;
+		foreach($db->result as $row)
+		{
+			print "<tr><td>".$row['Abbreviation'] . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>".$row['CreditValue']."</td>";
+	?>
+			<td><form method='get' action='dropsubmit.php?courseId=<?php echo $row['Id']?>'><button type='submit'>Drop</button></form></td></tr>
+	<?php
+			$totalGPA += $gpa*$credits;
+			$totalCredits += $credits;
+		}
+	?>
+</table>
+<h3>Register</h3>
+Enter new courses by id:
+<form method='get' action='registersubmit.php'>
+	<input type=text name='c1' required>
+	<input type=text name='c2'>
+	<input type=text name='c3'>
+	<input type=text name='c4'>
+	<input type=text name='c5'>
+	<input type=text name='c6'>
 </form>
-<?php
-include('helpers/footer.php');
+<?php>
+	include('helpers/footer.php');
 ?>

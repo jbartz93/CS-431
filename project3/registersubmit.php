@@ -1,38 +1,38 @@
 <?php
-	include('helpers/base.php');
-	$user = $_REQUEST['name'];
-	$pass = $_REQUEST['password'];
-	$email = $_REQUEST['email'];
-	$dept = $_REQUEST['department'];
-	$give = $_REQUEST['givegrade'];
-	$view = $_REQUEST['viewall'];
-	$change = $_REQUEST['changeall'];
-	$add = $_REQUEST['addcourse'];
-
-	$query = "insert into users (Name, Password, Email, DeptId) values (?, sha1(?), ?, ?)";
-	try
-	{
-		$db->makeQuery($query, $user, $pass, $email, $dept);
+	include('base.php');
+	$c1 = $_REQUEST['c1'];
+	$c2 = $_REQUEST['c2'];
+	$c3 = $_REQUEST['c3'];
+	$c4 = $_REQUEST['c4'];
+	$c5 = $_REQUEST['c5'];
+	$c6 = $_REQUEST['c6'];
+	$query = "insert into Registration (UserId, CourseInstanceId) values (?, ?)";
+	try {
+		$db->makeQuery($query, $userId, $c1);
+	} catch(Exception $e) {}
+	if($c2 != null) {
+		try {
+			$db->makeQuery($query, $userId, $c2);
+		} catch(Exception $e) {}
 	}
-	catch (Exception $e)
-	{
-		die("Error: " . $e);
+	if($c3 != null) {
+		try {
+			$db->makeQuery($query, $userId, $c3);
+		} catch(Exception $e) {}
 	}
-	$userId = $db->insertId;
-	$_SESSION["Id"] = $userId;
-	$query = "insert into permissions (UserId, GiveGrade, ViewAllGrades, ChangeAllGrades, AddCourses) values (?, ?, ?, ?, ?)";
-	$give = ($give == "on" ? 1 : 0);
-	$view = ($view == "on" ? 1 : 0);
-	$change = ($change == "on" ? 1 : 0);
-	$add = ($add == "on" ? 1 : 0);
-	try
-	{
-		$db->makeQuery($query, $userId, $give, $view, $change, $add);
+	if($c4 != null) {
+		try {
+			$db->makeQuery($query, $userId, $c4);
+		} catch(Exception $e) {}
 	}
-	catch (Exception $e)
-	{
-		die("Error: " . $e);
+	if($c5 != null) {
+		try {
+			$db->makeQuery($query, $userId, $c5);
+		} catch(Exception $e) {}
 	}
-	header("Location: " . BASE_URL . "main.php");
-	exit();
+	if($c6 != null) {
+		try {
+			$db->makeQuery($query, $userId, $c6);
+		} catch(Exception $e) {}
+	}
 ?>
