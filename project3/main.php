@@ -14,7 +14,7 @@
 	{
 		print "Database problem: user does not have permissions";
 	}
-	foreach($db->rows as $row)
+	foreach($db->result as $row)
 	{
 		if($row['GiveGrade'] == 1 or $row['ChangeAllGrades'] == 1)
 		{
