@@ -6,7 +6,7 @@
 	$query = "delete from Registration where UserId=? and CourseInstanceId=?";
 	try
 	{
-		db->makeQuery($query, $userId, $cid);
+		$db->makeQuery($query, $userId, $cid);
 	}
 	catch(Exception $e)
 	{
