@@ -19,7 +19,7 @@
 		$db->makeQuery($courses, $userId);
 		foreach($db->result as $row)
 		{
-			print "<tr><td>".$row['Abbreviation'] . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>".$row['CreditValue']."</td>";
+			print "<tr><td>".$row['Abbreviation'] . ' ' . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>".$row['CreditValue']."</td>";
 	?>
 			<td><form method='get' action='dropsubmit.php?courseId=<?php echo $row['Id']?>'><button type='submit'>Drop</button></form></td></tr>
 	<?php
@@ -28,7 +28,7 @@
 </table>
 <h3>Register</h3>
 Enter new courses by id:
-<form method='get' action='registersubmit.php'>
+<form method='post' action='registersubmit.php'>
 	<input type='text' name='c1' required>
 	<input type='text' name='c2'>
 	<input type='text' name='c3'>
