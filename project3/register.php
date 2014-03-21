@@ -11,12 +11,12 @@
 	<th>Credits</th>
 	<th>Drop</th>
 	<?php
-		$grades = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, Title, CreditValue from Courses " +
-									"join Departments on Departments.Id = Courses.DeptId " +
-									"join CourseInstance on CourseInstance.CourseId = Courses.Id " + 
-									"join Registration on Registration.CourseInstanceId = CourseInstance.Id " +
+		$courses = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, Title, CreditValue from Courses " .
+									"join Departments on Departments.Id = Courses.DeptId " .
+									"join CourseInstance on CourseInstance.CourseId = Courses.Id " . 
+									"join Registration on Registration.CourseInstanceId = CourseInstance.Id " .
 									"where UserId = ? order by Semester, Abbreviation, CourseNumber";
-		$db->makeQuery($grades, $userId);
+		$db->makeQuery($courses, $userId);
 		$totalGPA = 0;
 		$totalCredits = 0;
 		foreach($db->result as $row)
