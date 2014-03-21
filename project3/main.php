@@ -14,7 +14,7 @@
 	}
 	catch(Exception $e)
 	{
-		die $e;
+		die $e->getMessage();
 	}
 	
 	if($db->numRows == 0)
