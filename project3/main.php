@@ -1,14 +1,21 @@
 <?php
 	$pageTitle = "431 University";
-	include('helpers/header.php');
 	include('helpers/base.php');
+	include('helpers/header.php');
 ?>
 <ul>
 <li><a href="viewgrades.php">View Grades</a></li>
 <li><a href="register.php">Add/Drop/View Courses</a></li>
 <?php
 	$query = "select GiveGrade, ChangeAllGrades, AddCourses from Permissions where UserId=? limit 1 ";
-	$db->makeQuery($query, $userId);
+	try
+	{
+		$db->makeQuery($query, $userId);
+	}
+	catch(Exception $e)
+	{
+		die $e;
+	}
 	
 	if($db->numRows == 0)
 	{
