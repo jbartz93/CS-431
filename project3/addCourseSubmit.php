@@ -43,7 +43,7 @@
     die($e->getMessage());
   }
 
-  header("Location: " . BASE_URL . "registered.php");
+  header("Location: " . BASE_URL . "register.php");
   exit();
 
   include("helpers/footer.php");

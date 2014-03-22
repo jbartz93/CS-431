@@ -5,7 +5,7 @@ include('helpers/base.php');
 include('helpers/header.php');
 ?>
 <h2>Welcome to our incredibly insecure system!</h2>
-<form method="post" action="registersubmit.php">
+<form method="post" action="userregistersubmit.php">
 Name: <input type="text" required name="name"><br>
 Password: <input type="password" required name="password"><br>
 Email: <input type="email" required name="email"><br>

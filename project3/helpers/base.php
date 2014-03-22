@@ -22,5 +22,5 @@
     die("Error: " . $e);
   }
 
-  define('BASE_URL', 'http://cs431jjs.herokuapp.com/project3/');
+  define('BASE_URL', 'http://localhost/cs-431/project3/');
 ?>
