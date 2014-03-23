@@ -16,7 +16,7 @@
     die($e->getMessage());
   }
   $row = $db->result[0];
-  print "<h2>".$row["Abbreviation"]." ".$row["CourseNumber"]." - ".$row["Title"]."<\h2>";
+  print "<h2>".$row["Abbreviation"]." ".$row["CourseNumber"]." - ".$row["Title"]."</h2>";
   print $row["Description"];
   if($db->numRows == 0) {
     print("No sections exist.");
