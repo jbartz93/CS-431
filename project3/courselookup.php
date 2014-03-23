@@ -40,7 +40,7 @@
   if(isset($_GET['query']) && isset($_GET['department'])) {
     $query = "%" . $_GET["query"] . "%";
     try {
-      $db->makeQuery("SELECT Id, Title, Abbreviation, CourseNumber, Description FROM Courses JOIN Departments ON Departments.Id = DeptId WHERE DeptId = ? AND (Title LIKE ? OR CourseNumber LIKE ?)", $_GET['department'], $query, $query);
+      $db->makeQuery("SELECT Courses.Id, Title, Abbreviation, CourseNumber, Description FROM Courses JOIN Departments ON Departments.Id = DeptId WHERE DeptId = ? AND (Title LIKE ? OR CourseNumber LIKE ?)", $_GET['department'], $query, $query);
     }
     catch(Exception $e) {
       die($e->getMessage());
