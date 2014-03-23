@@ -63,7 +63,16 @@
     <?php
         foreach($db->result as $row)
         {
-          print "<tr><td>".$row["Abbreviation"]." ".$row["CourseNumber"]."</td><td>".$row["Title"]."</td><td>".$row["Description"]."</td><td><a href='coursedetail.php?id=".$row["Id"]."'>See sections</a></td></tr>";
+    ?>
+            <tr>
+              <td><?php echo $row["Abbreviation"] . " " . $row["CourseNumber"] ?></td>
+              <td><?php echo $row["Title"] ?></td>
+              <td><?php echo $row["Description"] ?></td>
+              <td>
+                <a href="coursedetail.php?id=<?php echo $row['Id'] ?>">See sections</a>
+              </td>
+            </tr>
+    <?php
         }
     ?>
   </table>
