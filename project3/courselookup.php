@@ -40,22 +40,30 @@
   if(isset($_GET['query']) && isset($_GET['department'])) {
     $query = "%" . $_GET["query"] . "%";
     try {
-      $db->makeQuery("SELECT Title, CourseNumber, Description FROM Courses WHERE DeptId = ? AND (Title LIKE ? OR CourseNumber LIKE ?)", $_GET['department'], $query, $query);
+      $db->makeQuery("SELECT Id, Title, Abbreviation, CourseNumber, Description FROM Courses JOIN Departments ON Departments.Id = DeptId WHERE DeptId = ? AND (Title LIKE ? OR CourseNumber LIKE ?)", $_GET['department'], $query, $query);
     }
     catch(Exception $e) {
       die($e->getMessage());
     }
+	if($db->numRows == 1)
+	{
+		foreach($db->result as $row)
+		{
+			header("Location: coursedetail.php?id=".$row["Id"]);
+		}
+	}
 ?>
   <table>
     <tr>
-      <th>Title</th>
       <th>Course Number</th>
+      <th>Title</th>
       <th>Description</th>
+	  <th></th>
     </tr>
     <?php
         foreach($db->result as $row)
         {
-          print "<tr><td>".$row["Title"]."</td><td>".$row["CourseNumber"]."</td><td>".$row["Description"]."</td></tr>";
+          print "<tr><td>".$row["Abbreviation"]." ".$row["CourseNumber"]."</td><td>".$row["Title"]."</td><td>".$row["Description"]."</td><td><a href='coursedetail.php?id=".$row["Id"]."'>See sections</a></td></tr>";
         }
     ?>
   </table>
