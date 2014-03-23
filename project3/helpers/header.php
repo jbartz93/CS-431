@@ -5,26 +5,11 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
-		
+
 <?php
-	if ($userId) {
-		if(@$permissions) {
-			try {
-				$db->makeQuery("select * from Permissions where UserId=? limit 1", $userId);
-			} catch(Exception $e) {
-				die($e->getMessage());
-			}
-			foreach($db->result as $row)
-			{
-				$granted = array(
-					"GiveGrade" => $row["GiveGrade"],
-					"ViewAllGrades" => $row["ViewAllGrades"],
-					"ChangeAllGrades" => $row["ChangeAllGrades"],
-					"AddCourses" => $row["AddCourses"],
-				);
-			}
-		}
-			
+  $needsToBeLoggedIn = (isset($needsToBeLoggedIn) && !$needsToBeLoggedIn) ? false : true;
+
+  if ($userId) {
 ?>
 	<a href="<?php echo BASE_URL ?>main.php">Home</a>
     <a href="<?php echo BASE_URL ?>logout.php">Log Out</a>
