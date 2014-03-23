@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS Registration;
 DROP TABLE IF EXISTS Meetings;
 DROP TABLE IF EXISTS CourseInstances;
+DROP TABLE IF EXISTS Semesters;
 DROP TABLE IF EXISTS Courses;
 DROP TABLE IF EXISTS Permissions;
 DROP TABLE IF EXISTS Roles;
@@ -24,7 +25,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Roles (
   UserId int(8) NOT NULL,
-  Role ENUM('student', 'faculty', 'staff', 'executive'),
+  Role ENUM('student', 'faculty', 'staff', 'executive') NOT NULL,
   FOREIGN KEY (UserId) REFERENCES Users(Id)
 ) engine=InnoDB;
 
@@ -46,13 +47,22 @@ CREATE TABLE Courses (
   CreditValue int(3) NOT NULL
 ) engine=InnoDB;
 
+CREATE TABLE Semesters (
+  Id int(8) PRIMARY KEY AUTO_INCREMENT,
+  Year char(4) NOT NULL,
+  Season ENUM('winter', 'spring', 'summer', 'fall') NOT NULL,
+  StartDate TIMESTAMP NOT NULL,
+  EndDate TIMESTAMP NOT NULL
+) engine=InnoDB;
+
 CREATE TABLE CourseInstances (
   Id int(8) PRIMARY KEY AUTO_INCREMENT,
   CourseId int(8) NOT NULL,
   ProfessorId int(8),
   NumberSeats int(8) NOT NULL,
   SectionNumber char(3) NOT NULL,
-  Semester char(5) NOT NULL,
+  SemesterId int(8) NOT NULL,
+  FOREIGN KEY (SemesterId) REFERENCES Semesters(Id),
   FOREIGN KEY (CourseId) REFERENCES Courses(Id),
   FOREIGN KEY (ProfessorId) REFERENCES Users(Id)
 ) engine=InnoDB;
