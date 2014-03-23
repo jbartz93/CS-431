@@ -10,19 +10,19 @@
 					"JOIN Departments ON Departments.Id = DeptId ".
 					"JOIN CourseInstances ON Courses.Id = CourseInstances.CourseId ".
 					"JOIN Users On ProfessorId = Users.Id ".
-					"WHERE Courses.Id = ?", $id);
+					"WHERE Courses.Id = ? ORDER BY SectionNumber", $id);
   }
   catch(Exception $e) {
     die($e->getMessage());
   }
-  $row = $db->result[0];
-  print "<h2>".$row["Abbreviation"]." ".$row["CourseNumber"]." - ".$row["Title"]."</h2>";
-  print $row["Description"];
   if($db->numRows == 0) {
     print("No sections exist.");
   }
   else
   {
+	$row = $db->result[0];
+	print "<h2>".$row["Abbreviation"]." ".$row["CourseNumber"]." - ".$row["Title"]."</h2>";
+	print $row["Description"];
 ?>
 <br>
 <table>
