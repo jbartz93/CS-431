@@ -5,7 +5,7 @@
   include('helpers/header.php');
 
   try {
-	$id = $_GET["Id"];
+	$id = $_GET["id"];
     $db->makeQuery( "SELECT CourseInstances.Id AS Id, Title, Abbreviation, CourseNumber, Description, NumberSeats, Name, SectionNumber FROM Courses ".
 					"JOIN Departments ON Departments.Id = DeptId ".
 					"JOIN CourseInstances ON Courses.Id = CourseInstances.CourseId ".
