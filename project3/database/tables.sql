@@ -50,7 +50,7 @@ CREATE TABLE Courses (
 CREATE TABLE Semesters (
   Id int(8) PRIMARY KEY AUTO_INCREMENT,
   Year char(4) NOT NULL,
-  Season ENUM('winter', 'spring', 'summer', 'fall') NOT NULL,
+  Season ENUM('WINTER', 'SPRING', 'SUMMER', 'FALL') NOT NULL,
   StartDate TIMESTAMP NOT NULL,
   EndDate TIMESTAMP NOT NULL
 ) engine=InnoDB;
