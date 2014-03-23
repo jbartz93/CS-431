@@ -52,7 +52,8 @@ CREATE TABLE Semesters (
   Year char(4) NOT NULL,
   Season ENUM('WINTER', 'SPRING', 'SUMMER', 'FALL') NOT NULL,
   StartDate TIMESTAMP NOT NULL,
-  EndDate TIMESTAMP NOT NULL
+  EndDate TIMESTAMP NOT NULL,
+  Current bool DEFAULT false NOT NULL
 ) engine=InnoDB;
 
 CREATE TABLE CourseInstances (
