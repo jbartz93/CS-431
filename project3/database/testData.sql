@@ -7,6 +7,8 @@ INSERT INTO Permissions(UserId, GiveGrade, ViewAllGrades, ChangeAllGrades, AddCo
 
 INSERT INTO Courses(Title, DeptId, CourseNumber, Description) VALUES('CALCULUS I', 1, 111, 'The first of many calculus courses');
 
+INSERT INTO Semesters(Year, Season, StartDate, EndDate, Current) VALUES('2014', 'SPRING', '2014-01-20 00:00:01', '2014-05-15 00:00:01', true);
+
 INSERT INTO CourseInstances(CourseId, ProfessorId, NumberSeats, SectionNumber, Semester) VALUES(1, 1, 10, '001', 'F2014');
 
 # add meeting times for the course
