@@ -15,12 +15,14 @@
   catch(Exception $e) {
     die($e->getMessage());
   }
-
-  if($db->numRows == 0) {
-    die("No sections exist.");
-  }
+  $row = $db->result[0];
   print "<h2>".$row["Abbreviation"]." ".$row["CourseNumber"]." - ".$row["Title"]."<\h2>";
   print $row["Description"];
+  if($db->numRows == 0) {
+    print("No sections exist.");
+  }
+  else
+  {
 ?>
 <br>
 <table>
@@ -31,9 +33,10 @@
 		<th>Seats</th>
 	</tr>
 <?php
-	foreach($db->result as $row)
-	{
-		print "<tr><td>".$row["SectionNumber"]."</td><td>".$row["Id"]."</td><td>".$row["Name"]."</td><td>".$row["NumberSeats"]."</td></tr>";
+		foreach($db->result as $row)
+		{
+			print "<tr><td>".$row["SectionNumber"]."</td><td>".$row["Id"]."</td><td>".$row["Name"]."</td><td>".$row["NumberSeats"]."</td></tr>";
+		}
 	}
 ?>
 </table>
