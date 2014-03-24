@@ -8,16 +8,17 @@
 	$query = "SELECT CourseInstances.Id AS Id, Title, Abbreviation, CourseNumber, Description, NumberSeats, Name, SectionNumber FROM Courses ".
 				"JOIN Departments ON Departments.Id = DeptId ".
 				"JOIN CourseInstances ON Courses.Id = CourseInstances.CourseId ".
-				"JOIN Users On ProfessorId = Users.Id ";
+				"JOIN Users On ProfessorId = Users.Id ".
+				"JOIN Semesters ON Semesters.Id = SemesterId ";
 	try 
 	{
 		if(array_key_exists("semester", $_GET))
 		{
-			$db->makeQuery($query . "JOIN Semesters ON Semesters.Id = SemesterId WHERE Courses.Id = ? AND Semesters.Id = ? ORDER BY SectionNumber", $id, $_GET["semester"]);
+			$db->makeQuery($query . "WHERE Courses.Id = ? AND Semesters.Id = ? ORDER BY SectionNumber", $id, $_GET["semester"]);
 		}
 		else
 		{
-			$db->makeQuery($query . "WHERE Courses.Id = ? ORDER BY SectionNumber", $id);
+			$db->makeQuery($query . "WHERE Courses.Id = ? AND Current = true ORDER BY SectionNumber", $id);
 		}
 	}
 	catch(Exception $e) {
