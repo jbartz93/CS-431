@@ -15,7 +15,7 @@ include('helpers/header.php');
 									"join Departments on Departments.Id = Courses.DeptId " .
 									"join CourseInstances on CourseInstances.CourseId = Courses.Id " .
 									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
-									"where UserId = ? order by Semester, Abbreviation, CourseNumber";
+									"where UserId = ? order by (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber";
 		$db->makeQuery($grades, $userId);
 		$totalGPA = 0;
 		$totalCredits = 0;
@@ -30,6 +30,6 @@ include('helpers/header.php');
 	?>
 </table>
 <?php
-	print 'GPA: ' + ($totalGPA/$totalCredits);
+	print 'GPA: ' . ($totalGPA/$totalCredits);
 	include('helpers/footer.php');
 ?>

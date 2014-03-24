@@ -1,6 +1,7 @@
 <?php
 	$pageTitle = "Course Details";
 	$needsToBeLoggedIn = false;
+	$permissions = true;
 	include('helpers/base.php');
 	include('helpers/header.php');
 
@@ -10,7 +11,7 @@
 				"JOIN CourseInstances ON Courses.Id = CourseInstances.CourseId ".
 				"JOIN Users On ProfessorId = Users.Id ".
 				"JOIN Semesters ON Semesters.Id = SemesterId ";
-	try 
+	try
 	{
 		if(array_key_exists("semester", $_GET))
 		{
@@ -57,7 +58,19 @@
 	}
 ?>
 </table>
-See other semesters: 
+
+<?php
+	if($granted['AddCourses']):
+?>
+	</br>
+	<button type='button' onclick='window.location.assign("addSection.php?courseId=<?php echo $id ?>")'>Add Section</button>
+	</br>
+	</br>
+<?php
+	endif;
+?>
+
+See other semesters:
 <form method="get" action="coursedetail.php">
   <input type="text" style="display:none" value="<?php print $id?>">
   <select id="department" name="department">

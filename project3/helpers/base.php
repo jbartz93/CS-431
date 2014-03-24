@@ -4,8 +4,6 @@
 
   session_start();
 
-  $needsToBeLoggedIn = (isset($needsToBeLoggedIn) && !$needsToBeLoggedIn) ? false : true;
-
   if(isset($_SESSION["Id"])) {
     $userId = $_SESSION["Id"];
   }
@@ -20,6 +18,25 @@
   }
   catch (Exception $e) {
     die("Error: " . $e);
+  }
+
+  if ($userId) {
+    if(@$permissions) {
+      try {
+        $db->makeQuery("select * from Permissions where UserId=? limit 1", $userId);
+      } catch(Exception $e) {
+        die($e->getMessage());
+      }
+      foreach($db->result as $row)
+      {
+        $granted = array(
+          "GiveGrade" => $row["GiveGrade"],
+          "ViewAllGrades" => $row["ViewAllGrades"],
+          "ChangeAllGrades" => $row["ChangeAllGrades"],
+          "AddCourses" => $row["AddCourses"],
+        );
+      }
+    }
   }
 
   define('BASE_URL', 'http://cs431jjs.herokuapp.com/project3/');

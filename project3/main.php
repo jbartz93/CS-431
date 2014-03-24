@@ -16,7 +16,7 @@
 	{
 		die ($e->getMessage());
 	}
-	
+
 	if($db->numRows == 0)
 	{
 		print "Database problem: user does not have permissions";

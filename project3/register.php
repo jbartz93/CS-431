@@ -13,9 +13,9 @@
 	<?php
 		$courses = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, SectionNumber, Title, CreditValue from Courses " .
 									"join Departments on Departments.Id = Courses.DeptId " .
-									"join CourseInstances on CourseInstances.CourseId = Courses.Id " . 
+									"join CourseInstances on CourseInstances.CourseId = Courses.Id " .
 									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
-									"where UserId = ? order by Semester, Abbreviation, CourseNumber";
+									"where UserId = ? order by (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber";
 		$db->makeQuery($courses, $userId);
 		foreach($db->result as $row)
 		{
