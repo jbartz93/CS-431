@@ -2,7 +2,7 @@
   $permissions = true;
   include('helpers/base.php');
 
-  // probably should do a bunch of error checking here, but whatever
+  // should do a bunch of error checking here, but whatever
 
   $courseId = intval($_POST['courseId']);
   $sectionNum = $_POST['sectionNumber'];

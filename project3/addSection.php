@@ -67,7 +67,7 @@
         }
       }
     ?>';
-    var newSessionTag = '<li><input type="text" name="meetingLocation[]" placeholder="location"><select name="startTime[]"><option selected>Start Time</option>' + timeOptions + '</select><select name="endTime[]"><option selected>End Time</option>' + timeOptions + '</select></li>';
+    var newSessionTag = '<li><input type="text" name="meetingLocation[]" placeholder="location"> <select name="dayOfWeek"><option selected>Day of the Week</option><option name="M">M</option><option name="T">T</option><option name="W">W</option><option name="R">R</option><option name="F">F</option></select> <select name="startTime[]"><option selected>Start Time</option>' + timeOptions + '</select> <select name="endTime[]"><option selected>End Time</option>' + timeOptions + '</select></li>';
     document.getElementById('meetings').innerHTML += newSessionTag;
   }
 </script>
@@ -98,47 +98,65 @@
   </select>
   </br>
   <ul id="meetings">
-    <li><input type="text" name="meetingLocation[]" placeholder="location"><select name="startTime[]"><option selected>Start Time</option><?php
-      $hour = 1;
-      $minute = 0;
-      $morning = true;
-      while(true) {
-        echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
-
-        $minute = ($minute + 30) % 60;
-
-        if ($hour == 12 && $morning) {
+    <li>
+      <input type="text" name="meetingLocation[]" placeholder="location">
+      <select name="dayOfWeek">
+        <option selected>Day of the Week</option>
+        <option name="M">M</option>
+        <option name="T">T</option>
+        <option name="W">W</option>
+        <option name="R">R</option>
+        <option name="F">F</option>
+      </select>
+      <select name="startTime[]">
+        <option selected>Start Time</option>
+        <?php
           $hour = 1;
-          $morning = false;
-        }
-        else if ($hour == 12 && !$morning) {
-          break;
-        }
-        else if ($hour < 12) {
-          $hour++;
-        }
-      }
-    ?></select><select name="endTime[]"><option selected>End Time</option><?php
-      $hour = 1;
-      $minute = 0;
-      $morning = true;
-      while(true) {
-        echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
+          $minute = 0;
+          $morning = true;
+          while(true) {
+            echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
 
-        $minute = ($minute + 30) % 60;
+            $minute = ($minute + 30) % 60;
 
-        if ($hour == 12 && $morning) {
+            if ($hour == 12 && $morning) {
+              $hour = 1;
+              $morning = false;
+            }
+            else if ($hour == 12 && !$morning) {
+              break;
+            }
+            else if ($hour < 12) {
+              $hour++;
+            }
+          }
+        ?>
+      </select>
+      <select name="endTime[]">
+        <option selected>End Time</option>
+        <?php
           $hour = 1;
-          $morning = false;
-        }
-        else if ($hour == 12 && !$morning) {
-          break;
-        }
-        else if ($hour < 12) {
-          $hour++;
-        }
-      }
-    ?></select></li>
+          $minute = 0;
+          $morning = true;
+          while(true) {
+            echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
+
+            $minute = ($minute + 30) % 60;
+
+            if ($hour == 12 && $morning) {
+              $hour = 1;
+              $morning = false;
+            }
+            else if ($hour == 12 && !$morning) {
+              break;
+            }
+            else if ($hour < 12) {
+              $hour++;
+            }
+          }
+        ?>
+      </select>
+    </li>
   </ul>
   <input type="button" value="+ Add Another Meeting" onclick="addMeeting()">
   </br>
