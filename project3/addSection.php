@@ -51,7 +51,8 @@
       $minute = 0;
       $morning = true;
       while(true) {
-        echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
+        $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
+        echo '<option value="'. $time . '">'. $time . '</option>';
 
         $minute = ($minute + 30) % 60;
 
@@ -115,7 +116,8 @@
           $minute = 0;
           $morning = true;
           while(true) {
-            echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
+            $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
+            echo '<option value="'. $time . '">'. $time . '</option>';
 
             $minute = ($minute + 30) % 60;
 
@@ -139,7 +141,8 @@
           $minute = 0;
           $morning = true;
           while(true) {
-            echo '<option value="'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '">'. $hour . ':' . ($minute == 0 ? '00' : $minute) . '</option>';
+            $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
+            echo '<option value="'. $time . '">'. $time . '</option>';
 
             $minute = ($minute + 30) % 60;
 
