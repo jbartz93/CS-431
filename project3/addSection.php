@@ -47,20 +47,22 @@
 <script type="text/javascript">
   function addMeeting() {
     var timeOptions = '<?php
-      $hour = 1;
+      $hour = 12;
       $minute = 0;
       $morning = true;
       while(true) {
+        if ($hour == 11 && $morning) {
+          $morning = false;
+        }
+        
         $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
         echo '<option value="'. $time . '">'. $time . '</option>';
 
         $minute = ($minute + 30) % 60;
 
-        if ($hour == 12 && $morning) {
+        if ($hour == 12) {
           $hour = 1;
-          $morning = false;
-        }
-        else if ($hour == 12 && !$morning) {
+        else if ($hour == 11 && !$morning) {
           break;
         }
         else if ($hour < 12) {
