@@ -54,7 +54,7 @@
         if ($hour == 11 && $morning) {
           $morning = false;
         }
-        
+
         $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
         echo '<option value="'. $time . '">'. $time . '</option>';
 
@@ -62,6 +62,7 @@
 
         if ($hour == 12) {
           $hour = 1;
+        }
         else if ($hour == 11 && !$morning) {
           break;
         }
