@@ -71,8 +71,9 @@ CREATE TABLE CourseInstances (
 CREATE TABLE Meetings (
   Id int(8) PRIMARY KEY AUTO_INCREMENT,
   CourseInstanceId int(8) NOT NULL,
-  BeginTime TIMESTAMP NOT NULL,
-  EndTime TIMESTAMP NOT NULL,
+  DayOfWeek ENUM('M', 'T', 'W', 'R', 'F') NOT NULL,
+  BeginTime TIME NOT NULL,
+  EndTime TIME NOT NULL,
   Location varchar(20),
   FOREIGN KEY (CourseInstanceId) REFERENCES CourseInstances(Id)
 ) engine=InnoDB;
