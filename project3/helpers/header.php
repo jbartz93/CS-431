@@ -2,7 +2,8 @@
 <html>
   <head>
     <title><?php echo $pageTitle; ?></title>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+  	<link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   </head>
   <body>
 
