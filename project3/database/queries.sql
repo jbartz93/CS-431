@@ -2,7 +2,10 @@
 SELECT Id, FullName, Abbreviation FROM Departments;
 
 # Create a course
-INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue) VALUES (?, ?, ?, ?, ?)
+CREATE PROCEDURE createCourse(newTitle varchar(50), newDeptId int(8), newCourseNum int(5), newDescription text, newCreditValue int(3))
+BEGIN
+  INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue) VALUES (newTitle, newDeptId, newDescription, newCreditValue);
+END//
 
 # Get courses in a specifie department
 SELECT Abbreviation, CourseNumber, DeptId FROM Courses, Departments WHERE Courses.DeptId=Departments.Id AND Courses.Id=? LIMIT 1;
