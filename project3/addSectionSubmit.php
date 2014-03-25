@@ -28,6 +28,7 @@
     die("We aren't in a semester");
   }
 
+  // add the course instance
   try {
     $db->makeQuery("INSERT INTO CourseInstances(CourseId, ProfessorId, NumberSeats, SectionNumber, SemesterId) VALUES(?, ?, ?, ?, ?);", $courseId, $professorId, $numOfSeats, $sectionNum, $semesterId);
   } catch(Exception $e) {
@@ -36,6 +37,7 @@
 
   $courseInstanceId = $db->insertId;
 
+  // add the meetings
   for($i = 0; $i < count($meetingLocation); $i++) {
     try {
       $db->makeQuery("INSERT INTO Meetings(CourseInstanceId, DayOfWeek, BeginTime, EndTime, Location) VALUES(?, ?, ?, ?, ?);", $courseInstanceId, $dayOfWeek[$i], $startTime[$i], $endTime[$i], $meetingLocation[$i]);

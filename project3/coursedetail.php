@@ -6,20 +6,21 @@
 	include('helpers/header.php');
 
 	$id = $_GET["id"];
-	$query = "SELECT CourseInstances.Id AS Id, Title, Abbreviation, CourseNumber, Description, NumberSeats, Name, SectionNumber FROM Courses ".
+	$query = "SELECT CourseInstances.Id AS Id, Title, Abbreviation, CourseNumber, Description, NumberSeats, Name, SectionNumber, GROUP_CONCAT(DISTINCT CONCAT(DayOfWeek, ': ', TIME_FORMAT(BeginTime, '%l:%i %p'), ' - ', TIME_FORMAT(EndTime, '%l:%i %p')) SEPARATOR '</br>') AS DayOfWeek FROM Courses ".
 				"JOIN Departments ON Departments.Id = DeptId ".
 				"JOIN CourseInstances ON Courses.Id = CourseInstances.CourseId ".
 				"JOIN Users On ProfessorId = Users.Id ".
-				"JOIN Semesters ON Semesters.Id = SemesterId ";
+				"JOIN Semesters ON Semesters.Id = SemesterId " .
+				"JOIN Meetings ON Meetings.CourseInstanceId = CourseInstances.Id ";
 	try
 	{
 		if(array_key_exists("semester", $_GET))
 		{
-			$db->makeQuery($query . "WHERE Courses.Id = ? AND Semesters.Id = ? ORDER BY SectionNumber", $id, $_GET["semester"]);
+			$db->makeQuery($query . "WHERE Courses.Id = ? AND Semesters.Id = ? GROUP BY CourseInstances.Id ORDER BY SectionNumber", $id, $_GET["semester"]);
 		}
 		else
 		{
-			$db->makeQuery($query . "WHERE Courses.Id = ? AND Current = true ORDER BY SectionNumber", $id);
+			$db->makeQuery($query . "WHERE Courses.Id = ? AND Current = true GROUP BY CourseInstances.Id ORDER BY SectionNumber", $id);
 		}
 	}
 	catch(Exception $e) {
@@ -39,13 +40,14 @@
 	<tr>
 		<th>Section</th>
 		<th>Id</th>
+		<th>Days/Times</th>
 		<th>Professor</th>
 		<th>Seats</th>
 	</tr>
 <?php
 		foreach($db->result as $row)
 		{
-			print "<tr><td>".$row["SectionNumber"]."</td><td>".$row["Id"]."</td><td>".$row["Name"]."</td><td>".$row["NumberSeats"]."</td></tr>";
+			print "<tr><td>".$row["SectionNumber"]."</td><td>".$row["Id"]."</td><td>".$row["DayOfWeek"]."</td><td>".$row["Name"]."</td><td>".$row["NumberSeats"]."</td></tr>";
 		}
 	}
 	try
