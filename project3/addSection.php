@@ -44,14 +44,31 @@
     die("There needs to be a professor before you can create a section");
   }
 
+  // creates the HTML for the time dropdowns
   function createTimeOptions() {
     $timeOptionsHTML = '';
     $hour = 12;
     $minute = 0;
     $morning = true;
     while(true) {
+      // the name should be in 24 hour format so easier to put in database
+      $hourIn24Format = null;
+      if ($morning && $hour == 12) {
+        $hourIn24Format = '00';
+      }
+      else if ($morning && $hour < 10) {
+        $hourIn24Format = '0' . $hour;
+      }
+      else if ($morning || ($hour == 12 && !$morning)) {
+        $hourIn24Format = $hour;
+      }
+      else {
+        $hourIn24Format = $hour + 12;
+      }
+
+      $time24 = $hourIn24Format . ':' . ($minute == 0 ? '00' : $minute);
       $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
-      $timeOptionsHTML .= '<option value="'. $time . '">'. $time . '</option>';
+      $timeOptionsHTML .= '<option value="'. $time24 . '">'. $time . '</option>';
 
       $minute = ($minute + 30) % 60;
 
