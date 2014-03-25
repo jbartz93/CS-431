@@ -7,7 +7,7 @@
 	$c4 = $_REQUEST['c4'];
 	$c5 = $_REQUEST['c5'];
 	$c6 = $_REQUEST['c6'];
-	$query = "insert into Registration (UserId, CourseInstanceId) values (?, ?)";
+	$query = "INSERT INTO Registration (UserId, CourseInstanceId) VALUES (?, ?);";
 	try {
 		$db->makeQuery($query, $userId, $c1);
 	} catch(Exception $e) {}

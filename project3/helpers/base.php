@@ -23,7 +23,7 @@
   if ($userId) {
     if(@$permissions) {
       try {
-        $db->makeQuery("select * from Permissions where UserId=? limit 1", $userId);
+        $db->makeQuery("SELECT * FROM Permissions WHERE UserId=? LIMIT 1;", $userId);
       } catch(Exception $e) {
         die($e->getMessage());
       }
@@ -39,5 +39,5 @@
     }
   }
 
-  define('BASE_URL', 'http://cs431jjs.herokuapp.com/project3/');
+  define('BASE_URL', 'http://cs431jjs.herokuapp.com/');
 ?>

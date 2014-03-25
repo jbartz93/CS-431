@@ -7,7 +7,7 @@
 <li><a href="viewgrades.php">View Grades</a></li>
 <li><a href="register.php">Add/Drop/View Courses</a></li>
 <?php
-	$query = "select GiveGrade, ChangeAllGrades, AddCourses from Permissions where UserId=? limit 1 ";
+	$query = "SELECT GiveGrade, ChangeAllGrades, AddCourses FROM Permissions WHERE UserId=? LIMIT 1;";
 	try
 	{
 		$db->makeQuery($query, $userId);

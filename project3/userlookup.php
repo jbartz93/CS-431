@@ -14,8 +14,8 @@
 	if(array_key_exists("q", $_GET))
 	{
 		$q = "%" . $_GET["q"] . "%";
-		$query = "select Name, Email, FullName as Department from Users join Departments on Departments.Id = DeptId where Name like ? or Email like ? or FullName like ?";
-		try 
+		$query = "SELECT Name, Email, FullName AS Department FROM Users JOIN Departments ON Departments.Id = DeptId WHERE Name LIKE ? OR Email LIKE ? OR FullName LIKE ?;";
+		try
 		{
 			$db->makeQuery($query, $q, $q, $q);
 		}

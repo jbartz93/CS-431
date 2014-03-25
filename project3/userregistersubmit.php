@@ -9,7 +9,7 @@
 	$change = $_REQUEST['changeall'];
 	$add = $_REQUEST['addcourse'];
 
-	$query = "insert into users (Name, Password, Email, DeptId) values (?, sha1(?), ?, ?)";
+	$query = "INSERT INTO users (Name, Password, Email, DeptId) VALUES (?, sha1(?), ?, ?);";
 	try
 	{
 		$db->makeQuery($query, $user, $pass, $email, $dept);
@@ -20,7 +20,7 @@
 	}
 	$userId = $db->insertId;
 	$_SESSION["Id"] = $userId;
-	$query = "insert into permissions (UserId, GiveGrade, ViewAllGrades, ChangeAllGrades, AddCourses) values (?, ?, ?, ?, ?)";
+	$query = "INSERT INTO Permissions (UserId, GiveGrade, ViewAllGrades, ChangeAllGrades, AddCourses) VALUES (?, ?, ?, ?, ?);";
 	$give = ($give == "on" ? 1 : 0);
 	$view = ($view == "on" ? 1 : 0);
 	$change = ($change == "on" ? 1 : 0);

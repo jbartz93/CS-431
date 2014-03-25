@@ -13,7 +13,7 @@ Department:<br>
 <?php
 try
 {
-	$db->makeQuery("select Id, FullName from departments");
+	$db->makeQuery("SELECT Id, FullName FROM departments;");
 }
 catch(Exception $e)
 {

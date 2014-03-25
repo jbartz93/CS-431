@@ -11,11 +11,11 @@ include('helpers/header.php');
 	<th>Credits</th>
 	</tr>
 	<?php
-		$grades = "select Abbreviation, CourseNumber, Title, GradeGPA, CreditValue from Courses " .
-									"join Departments on Departments.Id = Courses.DeptId " .
-									"join CourseInstances on CourseInstances.CourseId = Courses.Id " .
-									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
-									"where UserId = ? order by (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber";
+		$grades = "SELECT Abbreviation, CourseNumber, Title, GradeGPA, CreditValue FROM Courses " .
+									"JOIN Departments ON Departments.Id = Courses.DeptId " .
+									"JOIN CourseInstances ON CourseInstances.CourseId = Courses.Id " .
+									"JOIN Registration ON Registration.CourseInstanceId = CourseInstances.Id " .
+									"WHERE UserId = ? ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber;";
 		$db->makeQuery($grades, $userId);
 		$totalGPA = 0;
 		$totalCredits = 0;

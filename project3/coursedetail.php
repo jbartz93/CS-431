@@ -52,7 +52,7 @@
 	}
 	try
 	{
-		$db->makeQuery("Select Id, Season, Year, Current FROM Semesters");
+		$db->makeQuery("SELECT Id, Season, Year, Current FROM Semesters");
 	}
 	catch(Exception $e)
 	{

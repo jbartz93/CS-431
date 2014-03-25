@@ -11,11 +11,11 @@
 	<th>Credits</th>
 	<th>Drop</th>
 	<?php
-		$courses = "select CourseInstances.Id as Id, Abbreviation, CourseNumber, SectionNumber, Title, CreditValue from Courses " .
-									"join Departments on Departments.Id = Courses.DeptId " .
-									"join CourseInstances on CourseInstances.CourseId = Courses.Id " .
-									"join Registration on Registration.CourseInstanceId = CourseInstances.Id " .
-									"where UserId = ? order by (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber";
+		$courses = "SELECT CourseInstances.Id AS Id, Abbreviation, CourseNumber, SectionNumber, Title, CreditValue FROM Courses " .
+									"JOIN Departments ON Departments.Id = Courses.DeptId " .
+									"JOIN CourseInstances ON CourseInstances.CourseId = Courses.Id " .
+									"JOIN Registration ON Registration.CourseInstanceId = CourseInstances.Id " .
+									"WHERE UserId = ? ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber";
 		$db->makeQuery($courses, $userId);
 		foreach($db->result as $row)
 		{
