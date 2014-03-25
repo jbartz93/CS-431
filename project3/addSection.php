@@ -43,34 +43,39 @@
   else {
     die("There needs to be a professor before you can create a section");
   }
+
+  function createTimeOptions() {
+    $timeOptionsHTML = '';
+    $hour = 12;
+    $minute = 0;
+    $morning = true;
+    while(true) {
+      $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
+      $timeOptionsHTML .= '<option value="'. $time . '">'. $time . '</option>';
+
+      $minute = ($minute + 30) % 60;
+
+      if ($hour == 12 && $minute == 0) {
+        $hour = 1;
+      }
+      else if ($hour == 11 && $minute == 0 && $morning) {
+        $morning = false;
+        $hour++;
+      }
+      else if ($hour == 11 && $minute == 0 && !$morning) {
+        break;
+      }
+      else if ($hour < 12 && $minute == 0) {
+        $hour++;
+      }
+    }
+
+    return $timeOptionsHTML;
+  }
 ?>
 <script type="text/javascript">
   function addMeeting() {
-    var timeOptions = '<?php
-      $hour = 12;
-      $minute = 0;
-      $morning = true;
-      while(true) {
-        if ($hour == 11 && $morning) {
-          $morning = false;
-        }
-
-        $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
-        echo '<option value="'. $time . '">'. $time . '</option>';
-
-        $minute = ($minute + 30) % 60;
-
-        if ($hour == 12) {
-          $hour = 1;
-        }
-        else if ($hour == 11 && !$morning) {
-          break;
-        }
-        else if ($hour < 12) {
-          $hour++;
-        }
-      }
-    ?>';
+    var timeOptions = '<?php echo createTimeOptions() ?>';
     var newSessionTag = '<li><input type="text" name="meetingLocation[]" placeholder="location"> <select name="dayOfWeek"><option selected>Day of the Week</option><option name="M">M</option><option name="T">T</option><option name="W">W</option><option name="R">R</option><option name="F">F</option></select> <select name="startTime[]"><option selected>Start Time</option>' + timeOptions + '</select> <select name="endTime[]"><option selected>End Time</option>' + timeOptions + '</select></li>';
     document.getElementById('meetings').innerHTML += newSessionTag;
   }
@@ -114,53 +119,11 @@
       </select>
       <select name="startTime[]">
         <option selected>Start Time</option>
-        <?php
-          $hour = 1;
-          $minute = 0;
-          $morning = true;
-          while(true) {
-            $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
-            echo '<option value="'. $time . '">'. $time . '</option>';
-
-            $minute = ($minute + 30) % 60;
-
-            if ($hour == 12 && $morning) {
-              $hour = 1;
-              $morning = false;
-            }
-            else if ($hour == 12 && !$morning) {
-              break;
-            }
-            else if ($hour < 12) {
-              $hour++;
-            }
-          }
-        ?>
+        <?php echo createTimeOptions() ?>
       </select>
       <select name="endTime[]">
         <option selected>End Time</option>
-        <?php
-          $hour = 1;
-          $minute = 0;
-          $morning = true;
-          while(true) {
-            $time = $hour . ':' . ($minute == 0 ? '00' : $minute) . ' ' . ($morning ? 'AM' : 'PM');
-            echo '<option value="'. $time . '">'. $time . '</option>';
-
-            $minute = ($minute + 30) % 60;
-
-            if ($hour == 12 && $morning) {
-              $hour = 1;
-              $morning = false;
-            }
-            else if ($hour == 12 && !$morning) {
-              break;
-            }
-            else if ($hour < 12) {
-              $hour++;
-            }
-          }
-        ?>
+        <?php echo createTimeOptions() ?>
       </select>
     </li>
   </ul>
