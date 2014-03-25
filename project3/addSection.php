@@ -76,8 +76,8 @@
 <script type="text/javascript">
   function addMeeting() {
     var timeOptions = '<?php echo createTimeOptions() ?>';
-    var newSessionTag = '<li><input type="text" name="meetingLocation[]" placeholder="location"> <select name="dayOfWeek"><option selected>Day of the Week</option><option name="M">M</option><option name="T">T</option><option name="W">W</option><option name="R">R</option><option name="F">F</option></select> <select name="startTime[]"><option selected>Start Time</option>' + timeOptions + '</select> <select name="endTime[]"><option selected>End Time</option>' + timeOptions + '</select></li>';
-    document.getElementById('meetings').innerHTML += newSessionTag;
+    var newMeetingHTML = '<li><input type="text" name="meetingLocation[]" placeholder="location"> <select name="dayOfWeek[]"><option selected>Day of the Week</option><option name="M">M</option><option name="T">T</option><option name="W">W</option><option name="R">R</option><option name="F">F</option></select> <select name="startTime[]"><option selected>Start Time</option>' + timeOptions + '</select> <select name="endTime[]"><option selected>End Time</option>' + timeOptions + '</select></li>';
+    $('#meetings').append(newMeetingHTML);
   }
 </script>
 
@@ -109,7 +109,7 @@
   <ul id="meetings">
     <li>
       <input type="text" name="meetingLocation[]" placeholder="location">
-      <select name="dayOfWeek">
+      <select name="dayOfWeek[]">
         <option selected>Day of the Week</option>
         <option name="M">M</option>
         <option name="T">T</option>
