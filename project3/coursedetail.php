@@ -62,7 +62,7 @@
 </table>
 
 <?php
-	if($granted['AddCourses']):
+	if(@$granted['AddCourses']):
 ?>
 	</br>
 	<button type='button' onclick='window.location.assign("addSection.php?courseId=<?php echo $id ?>")'>Add Section</button>
