@@ -23,9 +23,13 @@ include('helpers/header.php');
 		{
 			$gpa = $row['GradeGPA'];
 			$credits = $row['CreditValue'];
-			print "<tr><td>".$row['Abbreviation'] . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>$gpa</td><td>$credits</td></tr>";
-			$totalGPA += $gpa*$credits;
-			$totalCredits += $credits;
+			$grade = gpaToLetter($gpa);
+			print "<tr><td>".$row['Abbreviation'] . $row['CourseNumber']. "</td><td>".$row['Title']."</td><td>$grade</td><td>$credits</td></tr>";
+			if($gpa != null)
+			{
+				$totalGPA += $gpa*$credits;
+				$totalCredits += $credits;
+			}
 		}
 	?>
 </table>
