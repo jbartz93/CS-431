@@ -4,23 +4,49 @@ SELECT Id, FullName, Abbreviation FROM Departments;
 # Create a course
 CREATE PROCEDURE createCourse(newTitle varchar(50), newDeptId int(8), newCourseNum int(5), newDescription text, newCreditValue int(3))
 BEGIN
-  INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue) VALUES (newTitle, newDeptId, newDescription, newCreditValue);
+  INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue)
+  VALUES (newTitle, newDeptId, newDescription, newCreditValue);
 END//
 
-# Get courses in a specifie department
-SELECT Abbreviation, CourseNumber, DeptId FROM Courses, Departments WHERE Courses.DeptId=Departments.Id AND Courses.Id=? LIMIT 1;
+# Get courses in a specific department
+CREATE PROCEDURE getDepartmentCourses(courseId int(8))
+BEGIN
+  SELECT Abbreviation, CourseNumber, DeptId
+  FROM Courses, Departments
+  WHERE Courses.DeptId=Departments.Id AND Courses.Id=courseId
+  LIMIT 1;
+END//
 
 # Get the users who are faculty in a certain department
-SELECT Id, Name FROM Users, Roles WHERE Users.Id=Roles.UserId AND Role='faculty' AND DeptId=? LIMIT 1
+CREATE PROCEDURE getDepartmentFaculty(departmentId int(8))
+BEGIN
+  SELECT Id, Name
+  FROM Users, Roles
+  WHERE Users.Id=Roles.UserId AND Role='faculty' AND DeptId=departmentId
+  LIMIT 1;
+END//
 
-# Get the current semester id
-SELECT Id FROM Semesters WHERE Current=true LIMIT 1;
+# Get the current semester
+CREATE PROCEDURE getCurrentSemester()
+BEGIN
+  SELECT Id, Year, Season, StartDate, EndDate
+  FROM Semesters
+  WHERE Current=true
+  LIMIT 1;
+END//
 
 # Create a new course section
-INSERT INTO CourseInstances(CourseId, ProfessorId, NumberSeats, SectionNumber, SemesterId) VALUES(?, ?, ?, ?, ?);
+CREATE PROCEDURE createCourseSection(newCourseId int(8), newProfessorId int(8), seatNumber int(8), newSectionNumber char(3), newSemesterId int(8))
+BEGIN
+  INSERT INTO CourseInstances(CourseId, ProfessorId, NumberSeats, SectionNumber, SemesterId)
+VALUES(newCourseId, newProfessorId, seatNumber, newSectionNumber, newSemesterId);
+END//
 
 # Create a new meeting for a section
-INSERT INTO Meetings(CourseInstanceId, DayOfWeek, BeginTime, EndTime, Location) VALUES(?, ?, ?, ?, ?);
+CREATE PROCEDURE createSectionMeeting(newCourseInstanceId int(8), newDayOfWeek ENUM('M', 'T', 'W', 'R', 'F'), newBeginTime TIME, newEndTime TIME, newLocation varchar(20))
+BEGIN
+  INSERT INTO Meetings(CourseInstanceId, DayOfWeek, BeginTime, EndTime, Location) VALUES(newCourseInstanceId, newDayOfWeek, newBeginTime, newEndTime);
+END//
 
 # get the sections of a course in a past semester
 SELECT CourseInstances.Id AS Id, Title, Abbreviation, CourseNumber, Description, NumberSeats, Name, SectionNumber, GROUP_CONCAT(DISTINCT CONCAT(DayOfWeek, ': ', TIME_FORMAT(BeginTime, '%l:%i %p'), ' - ', TIME_FORMAT(EndTime, '%l:%i %p')) SEPARATOR '</br>') AS DayOfWeek FROM Courses
