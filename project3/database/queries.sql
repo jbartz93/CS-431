@@ -21,8 +21,8 @@ END//
 CREATE PROCEDURE getDepartmentFaculty(departmentId int(8))
 BEGIN
   SELECT Id, Name
-  FROM Users, Roles
-  WHERE Users.Id=Roles.UserId AND Role='faculty' AND DeptId=departmentId
+  FROM Users
+  WHERE Role='faculty' AND DeptId=departmentId
   LIMIT 1;
 END//
 
