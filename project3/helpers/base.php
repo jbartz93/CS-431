@@ -39,5 +39,5 @@
     }
   }
 
-  define('BASE_URL', 'http://cs431jjs.herokuapp.com/');
+  define('BASE_URL', 'http://cs431jjs.herokuapp.com/project3/');
 ?>
