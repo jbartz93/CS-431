@@ -20,13 +20,8 @@ CREATE TABLE Users (
   Password char(40) NOT NULL,
   Email varchar(50) NOT NULL,
   DeptId int(8) NOT NULL,
-  FOREIGN KEY (DeptId) REFERENCES Departments(Id)
-) engine=InnoDB;
-
-CREATE TABLE Roles (
-  UserId int(8) NOT NULL,
   Role ENUM('student', 'faculty', 'staff', 'executive') NOT NULL,
-  FOREIGN KEY (UserId) REFERENCES Users(Id)
+  FOREIGN KEY (DeptId) REFERENCES Departments(Id)
 ) engine=InnoDB;
 
 CREATE TABLE Permissions (
@@ -81,7 +76,7 @@ CREATE TABLE Meetings (
 CREATE TABLE Registration (
   UserId int(8) NOT NULL,
   CourseInstanceId int(8) NOT NULL,
-  GradeGPA decimal(1, 1) DEFAULT 0.0 NOT NULL,
+  GradeGPA decimal(1, 1),
   FOREIGN KEY (UserId) REFERENCES Users(Id),
   FOREIGN KEY (CourseInstanceId) REFERENCES CourseInstances(Id)
 ) engine=InnoDB;
