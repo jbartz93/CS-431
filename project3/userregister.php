@@ -28,6 +28,12 @@ foreach($db->result as $row)
 	print "<input type='radio' name='department' value='" . $row['Id'] . "' required>" . $row['FullName'] . "<br>";
 }
 ?>
+Role: <select name="role">
+<option value="student">Student</option>
+<option value="faculty">Faculty</option>
+<option value="staff">Staff</option>
+<option value="executive">Executive</option>
+<select>
 <br>
 What permissions would you like?<br>
 <input type="checkbox" name="givegrade"> Give Grades<br>

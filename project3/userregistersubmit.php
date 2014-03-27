@@ -8,11 +8,12 @@
 	$view = $_REQUEST['viewall'];
 	$change = $_REQUEST['changeall'];
 	$add = $_REQUEST['addcourse'];
+	$role = $REQUEST['role'];
 
-	$query = "INSERT INTO users (Name, Password, Email, DeptId) VALUES (?, sha1(?), ?, ?);";
+	$query = "INSERT INTO users (Name, Password, Email, DeptId, Role) VALUES (?, sha1(?), ?, ?, ?);";
 	try
 	{
-		$db->makeQuery($query, $user, $pass, $email, $dept);
+		$db->makeQuery($query, $user, $pass, $email, $dept, $role);
 	}
 	catch (Exception $e)
 	{
