@@ -74,8 +74,8 @@
 
 See other semesters:
 <form method="get" action="coursedetail.php">
-  <input type="text" style="display:none" value="<?php print $id?>">
-  <select id="department" name="department">
+  <input type="text" name="id" style="display:none" value="<?php print $id?>">
+  <select id="semester" name="semester">
     <?php
       foreach($db->result as $row) {
         echo '<option value="' . $row['Id'] . '" selected="' . $row['Current'] . '">' . $row['Season'] . ' ' . $row['Year'] . '</option>';
