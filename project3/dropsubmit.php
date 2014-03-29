@@ -3,10 +3,10 @@
 	include('helpers/header.php');
 	$cid = $_REQUEST['courseId'];
 	$cid or die('Course Id not defined');
-	$query = "DELETE FROM Registration WHERE UserId=? AND CourseInstanceId=?";
+	$query = "BEGIN TRANSACTION; DELETE FROM Registration WHERE UserId=? AND CourseInstanceId=?; UPDATE CourseInstances SET NumberSeats = NumberSeats + 1 WHERE Id = ?; COMMIT;";
 	try
 	{
-		$db->makeQuery($query, $userId, $cid);
+		$db->makeQuery($query, $userId, $cid, $cid);
 	}
 	catch(Exception $e)
 	{

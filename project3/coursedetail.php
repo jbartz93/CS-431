@@ -27,7 +27,7 @@
 		die($e->getMessage());
 	}
 	if($db->numRows == 0) {
-		print("No sections exist.");
+		print("<br>No sections exist.");
 	}
 	else
 	{
@@ -71,7 +71,7 @@
 <?php
 	endif;
 ?>
-
+<br>
 See other semesters:
 <form method="get" action="coursedetail.php">
   <input type="text" name="id" style="display:none" value="<?php print $id?>">

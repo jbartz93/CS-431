@@ -17,7 +17,7 @@
     $departments = $db->result;
   }
   else {
-    die("No courses exist.");
+    die("<br>No courses exist.");
   }
 ?>
 
