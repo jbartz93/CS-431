@@ -30,7 +30,7 @@
 
 
   try {
-    $db->makeQuery("SELECT Id, Name FROM Users, Roles WHERE Users.Id=Roles.UserId AND Role='faculty' AND DeptId=? LIMIT 1", $courseDeptId);
+    $db->makeQuery("SELECT Id, Name FROM Users WHERE Role='faculty' AND DeptId=? LIMIT 1", $courseDeptId);
   } catch(Exception $e) {
     die("Error " . $e);
   }
