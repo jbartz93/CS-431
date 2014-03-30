@@ -10,7 +10,7 @@
 		$query = "BEGIN TRANSACTION; ".
 				 "INSERT INTO Registration (UserId, CourseInstanceId) VALUES (?, ?); ".
 				 "UPDATE CourseInstances SET NumberSeats = NumberSeats - 1 WHERE Id = ?; ".
-				 "COMMIT;"
+				 "COMMIT;";
 		try {
 			$db->makeQuery("SELECT NumberSeats FROM CourseInstances WHERE Id = ?", $c);
 			if($db->result[0]['NumberSeats'] > 0) {
@@ -24,11 +24,6 @@
 	$c4 = $_REQUEST['c4'];
 	$c5 = $_REQUEST['c5'];
 	$c6 = $_REQUEST['c6'];
-	$query = "BEGIN TRANSACTION; ".
-			 "IF NumberSeats".
-			 "INSERT INTO Registration (UserId, CourseInstanceId) VALUES (?, ?); ".
-			 "UPDATE CourseInstances SET NumberSeats = NumberSeats - 1 WHERE Id = ?; ".
-			 "COMMIT;"
 	addClass($c1);
 	addClass($c2);
 	addClass($c3);
