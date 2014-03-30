@@ -16,7 +16,7 @@
 			if($db->result[0]['NumberSeats'] > 0) {
 				$db->makeQuery($query, $userId, $c, $c);
 			}
-		} catch(Exception $e) {}
+		} catch(Exception $e) {die($e);}
 	}
 	$c1 = $_REQUEST['c1'];
 	$c2 = $_REQUEST['c2'];
