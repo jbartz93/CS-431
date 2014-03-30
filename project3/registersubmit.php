@@ -7,7 +7,7 @@
 		{
 			return;
 		}
-		$query = "BEGIN TRANSACTION; ".
+		$query = "START TRANSACTION; ".
 				 "INSERT INTO Registration (UserId, CourseInstanceId) VALUES (?, ?); ".
 				 "UPDATE CourseInstances SET NumberSeats = NumberSeats - 1 WHERE Id = ?; ".
 				 "COMMIT;";
