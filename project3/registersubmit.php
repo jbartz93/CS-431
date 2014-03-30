@@ -1,7 +1,7 @@
 <?php
 	include('helpers/base.php');
 	include('helpers/header.php');
-	function addClass($db, $c)
+	function addClass($db, $userId, $c)
 	{
 		if($c == null || $c == '')
 		{
@@ -24,12 +24,12 @@
 	$c4 = $_REQUEST['c4'];
 	$c5 = $_REQUEST['c5'];
 	$c6 = $_REQUEST['c6'];
-	addClass($db, $c1);
-	addClass($db, $c2);
-	addClass($db, $c3);
-	addClass($db, $c4);
-	addClass($db, $c5);
-	addClass($db, $c6);
+	addClass($db, $userId, $c1);
+	addClass($db, $userId, $c2);
+	addClass($db, $userId, $c3);
+	addClass($db, $userId, $c4);
+	addClass($db, $userId, $c5);
+	addClass($db, $userId, $c6);
 	header('Location: ' . BASE_URL . 'register.php');
 
 ?>
