@@ -7,14 +7,15 @@
 		{
 			return;
 		}
-		$query = "START TRANSACTION; ".
-				 "INSERT INTO Registration (UserId, CourseInstanceId) VALUES (?, ?); ".
-				 "UPDATE CourseInstances SET NumberSeats = NumberSeats - 1 WHERE Id = ?; ".
-				 "COMMIT;";
+		$query = "INSERT INTO Registration (UserId, CourseInstanceId) VALUES (?, ?); ";
+		$query2 = "UPDATE CourseInstances SET NumberSeats = NumberSeats - 1 WHERE Id = ?; ";
 		try {
 			$db->makeQuery("SELECT NumberSeats FROM CourseInstances WHERE Id = ?", $c);
 			if($db->result[0]['NumberSeats'] > 0) {
-				$db->makeQuery($query, $userId, $c, $c);
+				$db->makeQuery("START TRANSACTION");
+				$db->makeQuery($query, $userId, $c);
+				$db->makeQuery($query2, $c);
+				$db->makeQuery("COMMIT");
 			}
 		} catch(Exception $e) {die($e);}
 	}
