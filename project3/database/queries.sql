@@ -92,8 +92,11 @@ END//
 # Drops a student from a class
 CREATE PROCEDURE dropClass(studentId int(8), newCourseInstanceId int(8))
 BEGIN
+  START TRANSACTION;
   DELETE FROM Registration
   WHERE UserId=studentId AND CourseInstanceId=newCourseInstanceId;
+  UPDATE CourseInstances SET NumberSeats = NumberSeats + 1 WHERE Id = newCourseInstanceId;
+  COMMIT;
 END//
 
 # Get the name of a specified user
@@ -128,7 +131,10 @@ END//
 # Register a user in a class
 CREATE PROCEDURE registerUser(newUserId int(8), courseInstanceId int(8))
 BEGIN
+  START TRANSACTION;
   INSERT INTO Registration (UserId, CourseInstanceId) VALUES (newUserId, CourseInstanceId);
+  UPDATE CourseInstances SET NumberSeats = NumberSeats - 1 WHERE Id = CourseInstanceId;
+  COMMIT;
 END//
 
 # Find a user
