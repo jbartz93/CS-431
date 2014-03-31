@@ -9,7 +9,7 @@ include('helpers/header.php');
     }
     ?>
 <?php
-    if($granted['AssignAllGrades']) {
+    if($granted['ChangeAllGrades']) {
     ?>
 <h3>Assign to Student</h3>
 

@@ -7,7 +7,7 @@
     $sectionid = $_POST['sectionID'];
     
     if(!$granted['ViewAllGrades']) {
-        die('you do not have permission to access this.')
+        die('you do not have permission to access this.');
     }
     ?>
 

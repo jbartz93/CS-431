@@ -6,7 +6,7 @@
     
     $studentid = $_POST['studentID'];
     
-    if (!($granted['AssignAllGrades'])) {
+    if (!($granted['ChangeAllGrades'])) {
         die('you do not have permission to be here.');
     }
     ?>

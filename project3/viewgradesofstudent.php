@@ -7,7 +7,7 @@
     $studentid = $_POST['studentID'];
     
     if(!$granted['ViewAllGrades']) {
-        die('you do not have permission to access this.')
+        die('you do not have permission to access this.');
     }
     ?>
 
