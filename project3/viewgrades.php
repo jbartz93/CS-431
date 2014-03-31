@@ -1,8 +1,30 @@
 <?php
 $pageTitle="View Grades";
+    $permissions = true;
 include('helpers/base.php');
 include('helpers/header.php');
+    ?>
+
+<?php
+    if($granted['ViewAllGrades']) {
 ?>
+<h3>Look up Student Grades</h3>
+
+<form method="post" action="viewgradesofstudent.php">
+<input type="text" name="studentID" placeholder="Student ID">
+<button type="submit">Search</button>
+</form>
+
+<h3>Look up Section Grades</h3>
+
+<form method="post" action="viewgradesofsection.php">
+<input type="text" name="sectionID" placeholder="Section ID">
+<button type="submit">Search</button>
+</form>
+<?php
+    }
+?>
+
 <table>
 	<tr>
 	<th>Course Number</th>
@@ -17,10 +39,12 @@ include('helpers/header.php');
 									"JOIN Registration ON Registration.CourseInstanceId = CourseInstances.Id " .
 									"WHERE UserId = ? ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber;";
 		$db->makeQuery($grades, $userId);
+        $flag = 0;
 		$totalGPA = 0;
 		$totalCredits = 0;
 		foreach($db->result as $row)
 		{
+            $flag = 1;
 			$gpa = $row['GradeGPA'];
 			$credits = $row['CreditValue'];
 			$grade = gpaToLetter($gpa);
@@ -33,7 +57,13 @@ include('helpers/header.php');
 		}
 	?>
 </table>
+
 <?php
-	print 'GPA: ' . ($totalGPA/$totalCredits);
+    if ($totalCredits == 0){
+        print 'GPA: n/a';
+    }
+    else {
+        print 'GPA: ' . ($totalGPA/$totalCredits);
+    }
 	include('helpers/footer.php');
 ?>
