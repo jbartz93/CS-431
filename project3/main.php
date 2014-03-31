@@ -1,5 +1,6 @@
 <?php
 	$pageTitle = "431 University";
+	$permissions = true;
 	include('helpers/base.php');
 	include('helpers/header.php');
 ?>
@@ -7,30 +8,13 @@
 <li><a href="viewgrades.php">View Grades</a></li>
 <li><a href="register.php">Add/Drop/View Courses</a></li>
 <?php
-	$query = "SELECT GiveGrade, ChangeAllGrades, AddCourses FROM Permissions WHERE UserId=? LIMIT 1;";
-	try
+	if($granted['GiveGrade'] == 1 or $granted['ChangeAllGrades'] == 1)
 	{
-		$db->makeQuery($query, $userId);
+		print '<li><a href="assigngrades.php">Assign grades</a></li>';
 	}
-	catch(Exception $e)
+	if($granted['AddCourses'] == 1)
 	{
-		die ($e->getMessage());
-	}
-
-	if($db->numRows == 0)
-	{
-		print "Database problem: user does not have permissions";
-	}
-	foreach($db->result as $row)
-	{
-		if($row['GiveGrade'] == 1 or $row['ChangeAllGrades'] == 1)
-		{
-			print '<li><a href="assigngrades.php">Assign grades</a></li>';
-		}
-		if($row['AddCourses'] == 1)
-		{
-			print '<li><a href="addCourse.php">Add courses</a></li>';
-		}
+		print '<li><a href="addCourse.php">Add courses</a></li>';
 	}
 ?>
 <li><a href="userlookup.php">User Lookup</a></li>
