@@ -4,7 +4,7 @@
 include('helpers/base.php');
 include('helpers/header.php');
     
-    if (!($granted['GiveGrade'] OR $granted['AssignAllGrades'])) {
+    if (!($granted['GiveGrade'] OR $granted['ChangeAllGrades'])) {
         die('you do not have permission to be here.');
     }
     ?>
