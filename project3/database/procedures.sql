@@ -26,7 +26,7 @@ SELECT Id, FullName, Abbreviation FROM Departments;
 CREATE PROCEDURE createCourse(newTitle varchar(50), newDeptId int(8), newCourseNum int(5), newDescription text, newCreditValue int(3))
 BEGIN
   INSERT INTO Courses(Title, DeptId, CourseNumber, Description, CreditValue)
-  VALUES (newTitle, newDeptId, newDescription, newCreditValue);
+VALUES (newTitle, newDeptId, newCourseNum, newDescription, newCreditValue);
 END//
 
 # Get courses in a specific department
