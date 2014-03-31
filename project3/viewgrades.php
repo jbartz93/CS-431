@@ -37,7 +37,7 @@ include('helpers/header.php');
 									"JOIN Departments ON Departments.Id = Courses.DeptId " .
 									"JOIN CourseInstances ON CourseInstances.CourseId = Courses.Id " .
 									"JOIN Registration ON Registration.CourseInstanceId = CourseInstances.Id " .
-									"WHERE UserId = ? ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber;";
+									"WHERE UserId = ? AND GradeGPA != NULL ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber;";
 		$db->makeQuery($grades, $userId);
         $flag = 0;
 		$totalGPA = 0;
