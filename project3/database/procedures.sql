@@ -30,12 +30,12 @@ VALUES (newTitle, newDeptId, newCourseNum, newDescription, newCreditValue);
 END//
 
 # Get courses in a specific department
-CREATE PROCEDURE getDepartmentCourses(courseId int(8))
+CREATE PROCEDURE getDepartmentCourses(newDeptId int(8))
 BEGIN
-  SELECT Abbreviation, CourseNumber, DeptId
+  SELECT DISTINCT Courses.Id AS Id, Abbreviation, CourseNumber, DeptId
   FROM Courses, Departments
-  WHERE Courses.DeptId=Departments.Id AND Courses.Id=courseId
-  LIMIT 1;
+  WHERE Courses.DeptId=newDeptId
+  GROUP BY Courses.Id;
 END//
 
 # Get the users who are faculty in a certain department
@@ -43,8 +43,7 @@ CREATE PROCEDURE getDepartmentFaculty(departmentId int(8))
 BEGIN
   SELECT Id, Name
   FROM Users
-  WHERE Role='faculty' AND DeptId=departmentId
-  LIMIT 1;
+  WHERE Role='faculty' AND DeptId=departmentId;
 END//
 
 # Get the current semester
