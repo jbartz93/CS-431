@@ -75,7 +75,7 @@ CREATE TABLE Meetings (
 CREATE TABLE Registration (
   UserId int(8) NOT NULL,
   CourseInstanceId int(8) NOT NULL,
-  GradeGPA decimal(1, 1),
+  GradeGPA decimal(2, 1),
   FOREIGN KEY (UserId) REFERENCES Users(Id),
   FOREIGN KEY (CourseInstanceId) REFERENCES CourseInstances(Id)
 ) engine=InnoDB;
