@@ -16,6 +16,7 @@
   if($db->numRows == 1) {
     $courseName = $db->result[0]['Abbreviation'] . " " . $db->result[0]['CourseNumber'];
     $courseDeptId = $db->result[0]['DeptId'];
+      print $courseDeptId;
   }
   else {
     die("Sorry that course does not exist");
@@ -35,11 +36,14 @@
     die("Error " . $e);
   }
 
-  $professors = $db->result;
+  $professors = array();
 
-  /*if($professors->numRows < 1) {
+  if($db->numRows >= 1) {
+    $professors = $db->result;
+  }
+  else {
     die("There needs to be a professor before you can create a section");
-  }*/
+  }
 
   // creates the HTML for the time dropdowns
   function createTimeOptions() {
