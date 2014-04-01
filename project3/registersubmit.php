@@ -12,7 +12,7 @@
 		try {
 			$db->makeQuery("SELECT NumberSeats FROM CourseInstances WHERE Id = ?", $c);
 			if($db->result[0]['NumberSeats'] > 0) {
-				$db->makeQuery("SELECT * FROM Registration WHERE UserId = ? AND CourseInsanceId = ?", $userId, $c);
+				$db->makeQuery("SELECT * FROM Registration WHERE UserId = ? AND CourseInstanceId = ?", $userId, $c);
 				if($db->numRows == 0) {
 					$db->makeQuery("START TRANSACTION");
 					$db->makeQuery($query, $userId, $c);
