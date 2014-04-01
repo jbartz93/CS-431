@@ -16,7 +16,6 @@
   if($db->numRows == 1) {
     $courseName = $db->result[0]['Abbreviation'] . " " . $db->result[0]['CourseNumber'];
     $courseDeptId = $db->result[0]['DeptId'];
-      print $courseDeptId;
   }
   else {
     die("Sorry that course does not exist");
