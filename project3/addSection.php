@@ -41,7 +41,7 @@
     $professors = $db->result;
   }
   else {
-    die("There needs to be a professor before you can create a section");
+    //die("There needs to be a professor before you can create a section");
   }
 
   // creates the HTML for the time dropdowns
