@@ -35,11 +35,11 @@
     die("Error " . $e);
   }
 
-    $professors = $db->result;
+  $professors = $db->result;
 
-  if($professors->numRows < 1) {
+  /*if($professors->numRows < 1) {
     die("There needs to be a professor before you can create a section");
-  }
+  }*/
 
   // creates the HTML for the time dropdowns
   function createTimeOptions() {
