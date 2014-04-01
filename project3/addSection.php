@@ -30,7 +30,7 @@
 
 
   try {
-    $db->makeQuery("SELECT Id, Name FROM Users WHERE Role='faculty' AND DeptId=? LIMIT 1", $courseDeptId);
+    $db->makeQuery("SELECT Id, Name FROM Users WHERE Role='faculty' AND DeptId=?", $courseDeptId);
   } catch(Exception $e) {
     die("Error " . $e);
   }
@@ -41,7 +41,7 @@
     $professors = $db->result;
   }
   else {
-    //die("There needs to be a professor before you can create a section");
+    die("There needs to be a professor before you can create a section");
   }
 
   // creates the HTML for the time dropdowns
