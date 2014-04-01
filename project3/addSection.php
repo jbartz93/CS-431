@@ -35,12 +35,9 @@
     die("Error " . $e);
   }
 
-  $professors = array();
-
-  if($db->numRows >= 1) {
     $professors = $db->result;
-  }
-  else {
+
+  if($professors->numRows < 1) {
     die("There needs to be a professor before you can create a section");
   }
 
