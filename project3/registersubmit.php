@@ -1,6 +1,5 @@
 <?php
 	include('helpers/base.php');
-	include('helpers/header.php');
 	function addClass($db, $userId, $c)
 	{
 		if($c == null || $c == '')
@@ -12,10 +11,13 @@
 		try {
 			$db->makeQuery("SELECT NumberSeats FROM CourseInstances WHERE Id = ?", $c);
 			if($db->result[0]['NumberSeats'] > 0) {
-				$db->makeQuery("START TRANSACTION");
-				$db->makeQuery($query, $userId, $c);
-				$db->makeQuery($query2, $c);
-				$db->makeQuery("COMMIT");
+				$db->makeQuery("SELECT * FROM Registration WHERE UserId = ? AND CourseInstanceId = ?", $userId, $c);
+				if($db->numRows == 0) {
+					$db->makeQuery("START TRANSACTION");
+					$db->makeQuery($query, $userId, $c);
+					$db->makeQuery($query2, $c);
+					$db->makeQuery("COMMIT");
+				}
 			}
 		} catch(Exception $e) {die($e);}
 	}

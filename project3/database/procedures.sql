@@ -188,7 +188,7 @@ BEGIN
   JOIN Departments ON Departments.Id = Courses.DeptId
   JOIN CourseInstances ON CourseInstances.CourseId = Courses.Id
   JOIN Registration ON Registration.CourseInstanceId = CourseInstances.Id
-WHERE UserId = newUserId ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber;
+WHERE UserId = newUserId AND GradeGPA IS NOT NULL ORDER BY (SELECT Year FROM Semesters WHERE Id=SemesterId), Abbreviation, CourseNumber;
 END//
 
 delimiter ;
