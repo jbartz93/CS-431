@@ -1,4 +1,4 @@
-Code,City,State,Name
+Code,City,Location,Name
 "10001","Afognak Lake", "AK", "Afognak Lake Airport"
 "10003","Granite Mountain", "AK", "Bear Creek Mining Strip"
 "10004","Lik", "AK", "Lik Mining Camp"
@@ -6259,4 +6259,4 @@ Code,City,State,Name
 "16595","Kemerovo", "Russia", "Kemerovo Airport"
 "16596","Turkmenbashi", "Turkmenistan", "Turkmenbashi Airport"
 "16597","Sion", "Switzerland", "Sion Airport"
-"99999","Unknown", "AK", "Unknown"
+"99999", , "AK",
