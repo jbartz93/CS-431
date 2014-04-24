@@ -27,3 +27,16 @@ CREATE PROCEDURE FlightsOnDay(day int(1))
 BEGIN
   SELECT * FROM Flights WHERE DayOfWeek = day;
 END//
+
+create procedure SearchAirportsWithoutJoin(a int(5), b int(5))
+begin
+	select Month, DayOfMonth, DayOfWeek, Carriers.Name as CarrierName, FlNum as FlightNumber, @origin := OriginAirportId, @dest := DestAirportId, TaxiOut as DepartureTime, TaxiIn as ArrivalTime
+	from Flights
+	where OriginAirportId = a and DestAirportId = b;
+	select Name, City, Locations.Location from Airports
+	join Locations on Abbreviation = Airports.Location
+	where Code = @origin;
+	select Name, City, Locations.Location from Airports
+	join Locations on Abbreviation = Airports.Location
+	where Code = @dest;
+end//
