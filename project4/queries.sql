@@ -23,3 +23,7 @@ begin
 	where OriginAirportId = a and DestAirportId = b;
 end//
 
+CREATE PROCEDURE FlightsOnDay(day int(1))
+BEGIN
+  SELECT * FROM Flights WHERE DayOfWeek = day;
+END//

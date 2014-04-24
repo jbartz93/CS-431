@@ -30,7 +30,7 @@ CREATE TABLE Flights(
   Month int(2),
   DayOfMonth int(2),
   DayOfWeek int(1),
-  UniqueCarrier varchar(4) REFERENCES Carriers(Code),
+  UniqueCarrier varchar(4),
   FlNum varchar(8),
   OriginAirportId int(5),
   OriginCityMarketId int(5),
