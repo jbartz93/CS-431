@@ -40,3 +40,10 @@ begin
 	join Locations on Abbreviation = Airports.Location
 	where Code = @dest;
 end//
+
+CREATE PROCEDURE CarrierAggregation()
+BEGIN
+  SELECT UniqueCarrier, AVG(DepDelay) AS AverageDepartureDelay, 
+  AVG(ArrDelay) AS AverageArrivalDelay, AVG(AirTime) AS AverageTimeInAir
+  FROM Flights GROUP BY UniqueCarrier;
+END//
