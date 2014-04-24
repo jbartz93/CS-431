@@ -1,3 +1,10 @@
+DROP TABLE IF EXISTS Flights;
+DROP TABLE IF EXISTS Markets;
+DROP TABLE IF EXISTS Locations;
+DROP TABLE IF EXISTS Carriers;
+DROP TABLE IF EXISTS CancelationCodes;
+DROP TABLE IF EXISTS Airports;
+
 CREATE TABLE Airports(
   Code int(5) PRIMARY KEY,
   City varchar(60),
@@ -30,7 +37,7 @@ CREATE TABLE Flights(
   Month int(2),
   DayOfMonth int(2),
   DayOfWeek int(1),
-  UniqueCarrier varchar(4) REFERENCES Carriers(Code),
+  UniqueCarrier varchar(4),
   FlNum varchar(8),
   OriginAirportId int(5),
   OriginCityMarketId int(5),
@@ -50,5 +57,8 @@ CREATE TABLE Flights(
   WeatherDelay int(4),
   NasDelay int(4),
   SecurityDelay int(4),
-  LateAircraftDelay int(4),
+  LateAircraftDelay int(4)
 ) engine=InnoDB;
+
+create index OriginAirportsIndex on Flights(OriginAirportId);
+create index DestAirportsIndex on Flights(DestAirportId);
