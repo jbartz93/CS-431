@@ -62,3 +62,11 @@ CREATE TABLE Flights(
 
 create index OriginAirportsIndex on Flights(OriginAirportId);
 create index DestAirportsIndex on Flights(DestAirportId);
+
+load data local infile 'cs431/jan2014.csv' into table Flights columns terminated by ',' optionally enclosed by '"' ignore 1 lines;
+load data local infile 'cs431/feb2014.csv' into table Flights columns terminated by ',' optionally enclosed by '"' ignore 1 lines;
+load data local infile 'cs431/airports.csv' into table Airports columns terminated by ',' optionally enclosed by '"' ignore 1 lines;
+load data local infile 'cs431/cancelation_codes.csv' into table CancelationCodes columns terminated by ',' optionally enclosed by '"' ignore 1 lines;
+load data local infile 'cs431/carriers.csv' into table Carriers columns terminated by ',' optionally enclosed by '"' ignore 1 lines;
+load data local infile 'cs431/city_markets.csv' into table Markets columns terminated by ',' optionally enclosed by '"' ignore 1 lines;
+load data local infile 'cs431/locations.csv' into table Locations columns terminated by ',' optionally enclosed by '"' ignore 1 lines;

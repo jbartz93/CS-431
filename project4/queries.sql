@@ -9,6 +9,7 @@
 --the average delay duration per airline
 --cancelled/delayed flights based on cities/markets
 --we only need 2 or 3 actually written
+
 drop procedure if exists SearchAirports;
 delimiter //
 create procedure SearchAirports(a int(5), b int(5))
